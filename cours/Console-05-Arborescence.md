@@ -263,16 +263,17 @@ conserve pour les systèmes de fichiers montés manuellement, comme c'est le cas
 sur les serveurs. Nous éluciderons tout cela par la pratique, le moment venu.
 
 
+Les répertoires /proc et /sys
+-----------------------------
 
-
-
-
-
-
-
-
-
-
-
-
+Les répertoires `/proc` et `/sys` contiennent un système de fichiers virtuel
+qui documente à la volée le noyau et les différents processus du système. Avant
+que vous ne partiez en courant, retenez juste que certains fichier contenus
+dans ces répertoires nous fourniront des informations précieuses sur le système
+: le modèle et la fréquence du processeur (`/proc/cpuinfo` que nous avons eu
+l'occasion de voir), la mémoire vive et la quantité de mémoire vive utilisée
+(`/proc/meminfo`), la synchronisation d'une grappe de disques (`/proc/mdstat`)
+et beaucoup d'autres choses encore. Quant au "système de fichiers virtuel", on
+peut le considérer comme un système de fichiers volatile, dont il ne reste pas
+la moindre trace dès que vous éteignez la machine. 
 

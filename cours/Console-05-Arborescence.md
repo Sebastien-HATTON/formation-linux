@@ -211,6 +211,59 @@ système en état de marche, sans que cela ne nécessite un redémarrage. De fa�
 analogue, on peut enlever un module, ce qui permet donc d'activer ou de
 désactiver la prise en charge d'un certain matériel sur un système "à chaud". 
 
+Pour vous faire une idée un petit peu moins vague, entrez dans le répertoire
+`3.10.0-514.el7.x86_64`, puis continuez dans `kernel/drivers/net/ethernet`.
+Dans la liste de répertoires qui s'affiche, vous reconnaîtrez peut-être
+vaguement des noms de fabricants : `atheros`, `broadcom`, `intel`, `qlogic`,
+`realtek`, etc. Jetez un oeil distrait dans quelques-uns de ces répertoires et
+observez les différents fichiers `.ko` qu'ils contiennent. Chaque nom de
+fichier correspond en effet à un certain type de matériel, plus précisément à
+une série de cartes réseau (*net* signifie "réseau"). Ainsi, `8139cp.ko` et
+`8139too.ko` dans le répertoire `realtek` correspondent à une carte réseau
+équipée d'une puce (*chip*) Realtek 8139. De manière similaire, les fichiers
+commençant par `al` et `atl` dans le répertoire `atheros` correspondent à des
+cartes réseau Atheros, `e1000.ko` et `e1000e.ko` dans l'arborescence `intel`
+gèrent les cartes réseau Intel, et ainsi de suite. Dans la plupart des cas, le
+nom du module permet de deviner quel matériel lui correspond. Dans d'autres
+cas, la relation n'est pas évidente, et il faut se renseigner. Nous verrons
+plus loin où et comment faire. 
+
+
+Les répertoires /mnt, /media et /run
+------------------------------------
+
+Les répertoires `/media` et `/mnt` constituent par convention les points de
+montage de votre système. Le répertoire `/run` est un ajout récent à la
+hiérarchie des répertoires sous Linux, dont un des rôles est de prendre la
+relève de `/media`. C'est ici que se trouvent vos disques `C:`, `D:`, `E:`,
+`F:`, etc. 
+
+Dans un système Linux, lorsque vous insérez un périphérique amovible comme un
+CD-Rom, un DVD, un disque dur externe ou une clé USB, il doit être "monté".
+Cela signifie que le système de fichiers du périphérique doit être intégré à
+l'arborescence du système. Les données sont ensuite accessibles en dessous du
+répertoire qui constitue ce qu'on appelle le "point de montage". Avant
+d'enlever le périphérique, celui-ci doit être "démonté", c'est-à-dire que l'on
+indique au système de fichiers que les données du périphérique amovible ne
+doivent plus être englobées. 
+
+Sur un serveur Linux dépourvu d'environnement graphique, les opérations de
+montage et de démontage s'effectuent de manière traditionnelle, à la main. Pas
+avec un tournevis et une clé de douze, non, mais en tapant une série de
+commandes. Les distributions "poste de travail" modernes gèrent les
+périphériques amovibles de manière complètement transparente, c'est-à-dire que
+le montage s'effectue automatiquement. 
+
+Le montage et le démontage constituent un des concepts qui peuvent paraître
+étrangers à un habitué des systèmes Windows. Pour l'instant, retenez simplement
+que `/media` et `/run` vous permettent d'accéder aux données des périphériques
+amovibles que le système gère automatiquement, par exemple sur un poste de
+travail. Quant à `/mnt`, c'est le point de montage "historique" que l'on
+conserve pour les systèmes de fichiers montés manuellement, comme c'est le cas
+sur les serveurs. Nous éluciderons tout cela par la pratique, le moment venu.
+
+
+
 
 
 

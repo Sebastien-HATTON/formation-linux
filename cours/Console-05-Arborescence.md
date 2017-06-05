@@ -182,6 +182,37 @@ vont pas dans bin, dev, tmp, usr, var)." C'est un extrait de la description de
 l'arborescence d'Unix fournie par Dennis Ritchie, le fondateur en personne. Lui
 devrait savoir. 
 
+Le répertoire /lib
+------------------
+
+Les bibliothèques partagées par les programmes de `/bin` et `/sbin` se trouvent
+dans `/lib` (*libraries*, "bibliothèques"). 
+
+Un programme n'est pas forcément un bloc monolithique. Il se sert souvent d'un
+ensemble de fonctions qui se situent dans une bibliothèque partagée. Cette
+dernière ne peut pas s'exécuter directement, mais contient du code que l'on
+veut éviter de réécrire chaque fois qu'un programme doit exécuter une fonction
+similaire (par exemple ouvrir une fenêtre, *Enregistrer sous* ou calculer un
+cosinus). Sous Windows, ce sont tous les fichiers `.DLL` (*Dynamic Linked
+Library* ou "bibliothèque de liens dynamiques" que vous trouverez dans le
+répertoire `C:\WINDOWS\SYSTEM`. Sur votre système Linux, ce sont tous les
+fichiers `.so` (comme *shared object* ou "objet partagé". 
+
+Si vous vous rendez dans le répertoire `/lib/modules`, vous y trouverez un
+répertoire `3.10.0-514.el7.x86_64`. Les lecteurs attentifs noteront un air de
+parenté avec le nom du noyau `vmlinuz-3.10.0-514.el7.x86_64` que nous avons vu
+un peu plus haut. Effectivement, tous les fichiers contenus dans ce répertoire
+appartiennent au noyau. Ce sont là les "modules", l'équivalent de ce que les
+utilisateurs de Windows ou Mac OS X connaissent sous la désignation de pilote
+(*driver* ou "gestionnaire de périphérique") : des petits bouts de code que
+l'on charge dans le noyau pour lui permettre de gérer tel ou tel périphérique.
+Avec Linux, contrairement à Windows, on peut effectuer cette opération sur un
+système en état de marche, sans que cela ne nécessite un redémarrage. De façon
+analogue, on peut enlever un module, ce qui permet donc d'activer ou de
+désactiver la prise en charge d'un certain matériel sur un système "à chaud". 
+
+
+
 
 
 

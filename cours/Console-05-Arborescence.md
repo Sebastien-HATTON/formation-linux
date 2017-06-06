@@ -90,9 +90,11 @@ reviendrons bientôt pour revoir tout cela en détail.
 Les répertoires /bin et /boot
 -----------------------------
 
-Le répertoire `/bin` (pour *binaries* ou "binaires") contient des commandes
-simples pour tous les utilisateurs, et plus précisément, toutes les commandes
-dont le système a besoin pour démarrer correctement.
+Historiquement, le répertoire `/bin` (pour *binaries* ou "binaires") contient
+des commandes simples pour tous les utilisateurs, et plus précisément, toutes
+les commandes dont le système a besoin pour démarrer correctement. Sur notre
+système CentOS, `/bin` est un lien symbolique pointant vers `/usr/bin`. Nous
+verrons plus loin pourquoi. 
 
 `/boot` est l'endroit où un système Linux range tout ce qu'il lui faut pour
 démarrer (*to boot*, "démarrer"). Le fichier `vmlinuz-3.10.0-514.el7.x86_64`,
@@ -276,4 +278,129 @@ l'occasion de voir), la mémoire vive et la quantité de mémoire vive utilisée
 et beaucoup d'autres choses encore. Quant au "système de fichiers virtuel", on
 peut le considérer comme un système de fichiers volatile, dont il ne reste pas
 la moindre trace dès que vous éteignez la machine. 
+
+
+Les répertoires /root et /sbin
+------------------------------
+
+`/root`, c'est le répertoire d'utilisateur de... l'utilisateur `root` ! Il
+n'est donc pas étonnant que vous n'y ayez pas accès en tant qu'utilisateur
+normal. "Et pourquoi pas `/home/root` ?" penserez-vous peut-être.
+L'administrateur serait-il réticent de se retrouver ainsi à pied d'égalité avec
+les basses castes des utilisateurs communs ? Oui, en quelque sorte, mais pour
+une simple raison de sécurité.
+
+Dans les installations de grande envergure, il arrive assez souvent qu'un
+système Linux soit réparti sur plusieurs partitions d'un disque, voire sur
+plusieurs disques et, dans certains cas, le système sur lequel vous travaillez
+peut être "distribué" sur plusieurs machines, qui ne sont d'ailleurs pas
+forcément dans la même pièce, ni dans le même bâtiment. Au démarrage, le
+système se charge d'assembler les pièces pour vous présenter un tout cohérent.
+Imaginez maintenant qu'il y ait un problème avec le disque ou la machine
+contenant le répertoire `/home`. Si le répertoire d'utilisateur de `root` était
+en dessous de `/home`, il serait inaccessible. `root` ne pourrait plus
+s'identifier et, par conséquent, ne pourrait plus rien faire sur la machine. 
+
+Une remarque en passant. La langue anglaise désigne la racine `/` du système de
+fichiers par *root directory*. Gare à la confusion issue de l'homophonie avec
+*/root directory* !
+
+Le répertoire `/sbin` (*system binaries*, autrement dit "binaires système")
+renferme une série d'exécutables pour l'administrateur. Ces outils servent à
+partitionner et formater des disques, configurer des interfaces réseau et bien
+d'autres choses encore. Une partie de ces commandes peut être invoquée par les
+utilisateurs du "commun des mortels". À titre d'exemple, la commande suivante
+vous permet d'afficher la configuration réseau de votre machine.
+
+```
+[kikinovak@centosbox ~]$ /sbin/ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 52:54:00:ab:cd:ef brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.20/24 brd 192.168.2.255 scope global dynamic eth0
+       valid_lft 85369sec preferred_lft 85369sec
+    inet6 fe80::a9aa:7f83:429:ff1e/64 scope link 
+       valid_lft forever preferred_lft forever
+```
+
+Cependant, pour la plupart, ces utilitaires représentent l'équivalent numérique
+d'une tronçonneuse. Dans les mains d'un expert, cela permet d'abattre de la
+besogne en un tour de main. Mettez un utilisateur lambda aux commandes et
+attendez-vous à un massacre. 
+
+Tout comme `/bin`, `/sbin` est un lien symbolique qui pointe vers
+l'arborescence `/usr`. Nous y venons, justement. 
+
+
+Le répertoire /usr
+------------------
+
+L'arborescence sous `/usr` (*Unix System Resources* ou *Unix Specific
+Resources*, aucun lien avec *us(e)r*), renferme précisément tout ce qui n'est
+*pas* nécessaire au fonctionnement minimal du système. Vous serez d'ailleurs
+peut-être surpris d'apprendre que cela représente la part du lion. Sur notre
+installation serveur minimale, `/usr` contient près de 90 % de la totalité du
+système. Vous constaterez que certains répertoires ou liens symboliques
+rencontrés à la racine du système sont également présents ici : `/usr/bin`,
+`/usr/lib` ou encore `/usr/sbin`. 
+
+Même sur notre installation minimale, l'arborescence `/usr` compte déjà plus de
+20.000 fichiers. Avec un système d'une telle complexité, il est important que
+chaque chose ait une place bien définie pour que l'on s'y retrouve.
+
+  * `/usr/sbin` comporte d'autres commandes pour l'administrateur.
+
+  * `/usr/bin` renferme la majorité des exécutables pour les utilisateurs.
+
+  * `/usr/lib` et `/usr/lib64` contiennent les bibliothèques partagées de ces
+    derniers.
+
+Le moment est venu pour dire deux mots des liens symboliques (ou raccourcis)
+`/bin`, `/lib`, `/lib64` et `/sbin` à la racine du système. Traditionnellement,
+les systèmes Linux opéraient la distinction et rangeaient dans ces répertoires
+le nombre relativement limité d'applications et de bibliothèques qui étaient
+nécessaires au démarrage ou au dépannage du système. Tout ce qui n'était pas
+vital *stricto sensu* pour le démarrage avait sa place dans `/usr`. Or, depuis
+quelques années, on observe une tendance croissante à faire fi de cette
+distinction et à fusionner `/bin` et `/usr/bin`, `/lib` et `/usr/lib`, et ainsi
+de suite. D'où la série de liens symboliques.
+
+Notez que sous Linux, `/usr/bin` représente à peu de choses près l'équivalent
+du répertoire `C:\Program Files` de Windows. 
+
+Étant donné que la question revient souvent, je me permets d'anticiper un peu
+pour vous montrer comment je m'y suis pris pour compter le nombre de fichiers
+en dessous de `/usr`, ou pour afficher l'espace disque occupé par les
+arborescences respectives. Invoquez les deux commandes suivantes sans vous
+préoccuper des détails pour l'instant.
+
+```
+[kikinovak@centosbox /]$ find /usr -type f 2> /dev/null | wc -l
+20058
+[kikinovak@centosbox /]$ du -sh /* 2> /dev/null
+0       /bin
+81M     /boot
+0       /dev
+17M     /etc
+36K     /home
+0       /lib
+0       /lib64
+0       /media
+0       /mnt
+0       /opt
+0       /proc
+0       /root
+8,4M    /run
+0       /sbin
+0       /srv
+0       /sys
+0       /tmp
+836M    /usr
+41M     /var
+```
 

@@ -404,3 +404,25 @@ préoccuper des détails pour l'instant.
 41M     /var
 ```
 
+En langage tam-tam, le résultat des deux dernières commandes m'affiche que le
+système compte un total de 20.058 fichiers en dessous de `/usr`, et que cette
+arborescence occupe 836 Mo sur mon disque dur. 
+
+
+Les répertoires /tmp et /var
+----------------------------
+
+`/tmp`, c'est le répertoire temporaire du système, comme son nom le suggère.
+C'est l'endroit destiné à recevoir les données que vous considérez d'une
+certaine manière comme volatiles, c'est-à-dire celles dont vous n'avez plus
+besoin après un redémarrage de la machine. 
+
+L'arborescence en dessous de `/var/` contient toute une série de fichiers
+variables : des journaux, des boîtes aux lettres de messagerie, des sites web,
+etc. Les journaux se situent dans `/var/log`, mais ne vous attendez pas à y
+trouver *Le Monde Diplomatique*, *Libé* ou *L'Équipe*. Ces journaux ou
+*logfiles* sont des fichiers texte "crachés" à la volée par différents
+composants d'un système en marche. Un serveur de courrier électronique déposera
+les messages pour les utilisateurs dans `/var/spool/mail`. Et lorsque vous
+installerez un serveur web sur votre machine, les pages de vos sites seront
+stockées en dessous de `/var/www/html`. 

@@ -23,4 +23,6 @@ Nicolas Kovacs (info@microlinux.fr)
 
 * [Visualiser : more et less](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-06-Visualiser.md)
 
+* [Créer : touch et mkdir](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-07-Creer.md)
+
 

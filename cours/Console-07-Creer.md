@@ -248,6 +248,208 @@ Je vous propose de souffler un peu en faisant un petit exercice de révision.
 et `film.avi`. 
 
 
+Les arborescences en un coup d'oeil avec tree
+---------------------------------------------
+
+Puisque nous sommes en plein dans les arborescences de répertoires, le moment
+est venu de vous présenter un cousin lointain de `ls`, la commande `tree`.
+Curieusement, on ne la rencontre pas souvent dans les manuels d'initiation à la
+ligne de commande sous Linux. D'ailleurs, elle ne fait pas partie de notre
+système minimal, mais nous pouvons l'installer facilement, en anticipant
+quelque peu sur le chapitre concernant la gestion des logiciels. 
+
+Déconnectez-vous (`exit`) et reconnectez-vous en tant que `root`. Vérifiez si
+vous êtes bien connectés à Internet. 
+
+```
+# ping -c 4 www.centos.org
+PING www.centos.org (85.12.30.226) 56(84) bytes of data.
+64 bytes from 85.12.30.226 (85.12.30.226): icmp_seq=1 ttl=53 time=48.5 ms
+64 bytes from 85.12.30.226 (85.12.30.226): icmp_seq=2 ttl=53 time=48.3 ms
+64 bytes from 85.12.30.226 (85.12.30.226): icmp_seq=3 ttl=53 time=48.5 ms
+64 bytes from 85.12.30.226 (85.12.30.226): icmp_seq=4 ttl=53 time=48.7 ms
+
+--- www.centos.org ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3006ms
+rtt min/avg/max/mdev = 48.359/48.556/48.749/0.138 ms
+```
+
+Ensuite, installez l'application `tree` comme ceci.
+
+```
+# yum install tree
+```
+
+Répondez deux fois par l'affirmative pour l'installation du paquet et
+l'importation de la clé GPG, et le tour est joué. Quittez la console (`exit`)
+et reconnectez-vous en tant qu'utilisateur normal.
+
+La commande `tree` offre des fonctionnalités fort pratiques. Dans le cas de
+notre petit exercice de révision, elle nous permettra d'apprécier le résultat
+en un simple coup d'oeil. Essayez.
+
+```
+$ cd
+$ tree Fichiers
+Fichiers
+├── Documents
+│   └── texte.txt
+├── Films
+│   └── film.avi
+└── Images
+    └── photo.jpg
+
+3 directories, 3 files
+```
+
+Les anglophones parmi vous auront peut-être deviné que la commande `tree` (qui
+signifie "arbre" en anglais) sert à représenter des arborescences. 
+
+Notre système contient une série de fichiers et de répertoires cachés, que nous
+pouvons afficher avec l'option `-a` comme pour la commande `ls`.
+
+```
+$ tree /etc/skel
+/etc/skel
+
+0 directories, 0 files
+$ tree -a /etc/skel
+/etc/skel
+├── .bash_logout
+├── .bash_profile
+└── .bashrc
+
+0 directories, 3 files
+```
+
+Puisque nous avons parlé d'arbre, vous pouvez très bien imaginer les suites de
+répertoires et de sous-répertoires comme autant de branches qui se ramifient.
+
+```
+$ tree /usr/share/icons/hicolor/
+/usr/share/icons/hicolor/
+├── 16x16
+│   └── apps
+│       ├── fedora-logo-icon.png
+│       └── system-logo-icon.png
+├── 22x22
+│   └── apps
+│       ├── fedora-logo-icon.png
+│       └── system-logo-icon.png
+...
+```
+
+Les fichiers (comme `fedora-logo-icon.png` ou `system-logo-icon.png` dans le
+listing ci-dessus) correspondent alors aux feuilles de cet arbre. Pour filer la
+métaphore, tout se rejoint à la racine. Et les pinailleurs noteront que notre
+arbre est à l'envers. La racine est en haut, et il faut descendre vers les
+feuilles. 
+
+L'option `-d` de `tree` montre les différents embranchements, mais sans les
+feuilles. En d'autres termes, `tree -d` (comme *directory*) affichera seulement
+les répertoires d'une arborescence.
+
+```
+$ tree -d /usr/share/icons/hicolor/
+/usr/share/icons/hicolor/
+├── 16x16
+│   └── apps
+├── 22x22
+│   └── apps
+├── 24x24
+│   └── apps
+├── 256x256
+│   └── apps
+├── 32x32
+│   └── apps
+├── 36x36
+│   └── apps
+├── 48x48
+│   └── apps
+├── 96x96
+│   └── apps
+└── scalable
+    └── apps
+
+18 directories
+```
+
+
+Créer une arborescence de répertoires
+-------------------------------------
+
+Admettons maintenant que nous voulions créer une série de sous-répertoires
+imbriqués les uns dans les autres, à la manière des poupées gigognes. Le
+résultat ressemble à peu près à l'arborescence suivante.
+
+```
+$ tree branche1
+branche1
+└── branche2
+    └── branche3
+        └── branche4
+
+3 directories, 0 files
+```
+
+La première idée sera sans doute d'invoquer `mkdir` avec le chemin complet des
+sous-répertoires.
+
+```
+$ mkdir branche1/branche2/branche3/branche4
+```
+
+Malheureusement, voici ce qui se passe si nous faisons cela.
+
+```
+$ mkdir branche1/branche2/branche3/branche4
+mkdir: impossible de créer le répertoire « branche1/branche2/branche3/branche4 »: 
+Aucun fichier ou dossier de ce type
+```
+
+Réprimons un instant une éventuelle pulsion de traverser de notre poing l'écran
+de l'ordinateur. Au lieu de cela, regardons de plus près le message d'erreur et
+prenons-le au pied de la lettre. Ce que notre *shell* (interpréteur de
+commande) essaie de nous faire comprendre (de façon un peu laconique, certes),
+c'est qu'il n'arrive pas à créer le répertoire `branche4` parce que les
+répertoires parents `branche1`, `branche2` et `branche3` n'existent pas. Nous
+devons donc invoquer `mkdir` avec l'option `-p` (comme *parent*).
+
+```
+$ mkdir -p branche1/branche2/branche3/branche4
+$ tree branche1
+branche1
+└── branche2
+    └── branche3
+        └── branche4
+
+3 directories, 0 files
+```
+
+Je disais que notre *shell* se montrait un peu laconique à notre égard. Sachez
+que, dans bien des cas, il ne tient qu'à nous de le rendre plus bavard. Créons
+une autre série de répertoires imbriqués, mais cette fois-ci, utilisons
+l'option supplémentaire `-v` comme `--verbose`, c'est-à-dire "bavard".
+
+```
+$ mkdir -pv poupee1/poupee2/poupee3
+mkdir: création du répertoire « poupee1 »
+mkdir: création du répertoire « poupee1/poupee2 »
+mkdir: création du répertoire « poupee1/poupee2/poupee3 »
+```
+
+Cette option `-v` est applicable pour un grand nombre de commandes.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -21,4 +21,6 @@ Nicolas Kovacs (info@microlinux.fr)
 
 * [La structure des répertoires sous Linux](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-05-Arborescence.md)
 
+* [Visualiser : more et less](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-06-Visualiser.md)
+
 

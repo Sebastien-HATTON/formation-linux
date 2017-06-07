@@ -178,6 +178,77 @@ D'autre part, notez bien le `d` comme *directory* en tête des attributs
 complets (`drwxrwxr-x`), qui signifie que nous avons affaire à des répertoires. 
 
 
+Gare aux espaces !
+------------------
+
+N'oublions pas de dire deux mots sur un détail important qui constitue une
+source d'erreur fréquente : les espaces dans les noms de fichiers et de
+répertoires. Dans certains cas de figure (sur les serveurs, par exemple, ou
+dans les réseaux hétérogènes, c'est-à-dire composés de machines dotées de
+systèmes d'exploitation différents), il vaut mieux tout faire pour les éviter.
+Dans d'autres cas, il est tout à fait possible de les utiliser, à condition
+d'être sûr de ce que l'on fait. Je vous donne un exemple pour vous sensibiliser
+à la problématique.
+
+Retournez dans votre répertoire d'utilisateur (`cd` sans argument), créez un
+répertoire `Test` et, à l'intérieur de ce dernier, créez un répertoire `Mes
+Documents`, dont le nom vous semblera vaguement familier si vous venez d'un
+autre système d'exploitation, du genre auquel on échappe difficilement. 
+
+```
+$ cd
+$ mkdir Test
+$ cd Test
+$ mkdir Mes Documents
+$ ls -l
+total 0
+drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:54 Documents
+drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:54 Mes
+```
+
+Vous voyez le problème. La commande `mkdir` nous a créé deux répertoires
+distincts, `Mes` et `Documents`. Ce n'est pas ce que nous voulions faire. 
+
+Prenons un autre exemple pour voir comment nous aurions pu nous y prendre.
+Revenons dans notre répertoire d'utilisateur, créons un répertoire `Test2` et,
+à l'intérieur de ce dernier, essayons de créer trois répertoires distincts `Mes
+Documents`, `Mes Images` et `Mes Films`. 
+
+```
+$ cd
+$ mkdir Test2
+$ cd Test2
+$ mkdir "Mes Documents"
+$ mkdir 'Mes Images'
+$ mkdir Mes\ Films
+$ ls -l
+total 0
+drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:57 Mes Documents
+drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:58 Mes Films
+drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:57 Mes Images
+```
+
+Cette fois-ci, nous avons bien obtenu le résultat escompté. Vous aurez
+certainement remarqué que pour chacun des trois répertoires, je me suis servi
+d'une syntaxe différente, en utilisant respectivement des guillemets doubles,
+des guillemets simples et un caractère d'échappement devant l'espace. 
+
+
+Exercice de révision
+--------------------
+
+Je vous propose de souffler un peu en faisant un petit exercice de révision.
+
+1. Dans votre répertoire d'utilisateur, créez un dossier `Fichiers`.
+
+2. À l'intérieur de ce dernier, créez trois sous-répertoires `Documents`,
+`Images` et `Films`.
+
+3. Créez-y trois fichiers vides nommés respectivement `texte.txt`, `photo.jpg`
+et `film.avi`. 
+
+
+
 
 
 

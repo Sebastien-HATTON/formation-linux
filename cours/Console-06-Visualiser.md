@@ -92,8 +92,8 @@ $ more /etc/services
 
 Les anciennes versions de `more` ne permettaient pas de revenir en arrière, ce
 qui ne facilitait pas la recherche dans un fichier un peu plus volumineux. Les
-versions plus récentes - comme celle incluse dans notre installation de CentOS
-- ont ajouté cette fonctionnalité sous forme de la touche **B** (comme *back*),
+versions plus récentes (comme celle incluse dans notre installation de CentOS)
+ont ajouté cette fonctionnalité sous forme de la touche **B** (comme *back*),
 qui permet de "feuilleter" le fichier page par page en sens inverse. Toutefois,
 il faudra bien se résoudre à admettre que `more` fait partie de la poignée
 d'utilitaires un peu obtus du monde Linux et qu'il n'est pas vraiment

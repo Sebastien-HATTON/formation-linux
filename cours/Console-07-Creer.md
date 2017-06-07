@@ -154,6 +154,31 @@ drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:00 /home/kikinovak/Images
 ```
 
 
+Créer une série de répertoires
+------------------------------
+
+Admettons qu'à l'intérieur du répertoire `~/Images`, nous souhaitions créer
+trois sous-répertoires `Photos`, `Graphismes` et `Captures`. Nous pourrions le
+faire de la façon suivante.
+
+```
+$ cd ~/Images
+$ mkdir Photos Graphismes Captures
+$ ls -l
+total 0
+drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:08 Captures
+drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:08 Graphismes
+drwxrwxr-x. 2 kikinovak kikinovak 6  7 juin  14:08 Photos
+```
+
+Ce dernier exemple appelle deux remarques. D'une part, il est tout à fait
+possible de créer une série de répertoires *à la louche*. Il suffit de
+spécifier leurs noms respectifs en argument, en les séparant d'un espace.
+D'autre part, notez bien le `d` comme *directory* en tête des attributs
+complets (`drwxrwxr-x`), qui signifie que nous avons affaire à des répertoires. 
+
+
+
 
 
 

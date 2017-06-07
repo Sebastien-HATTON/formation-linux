@@ -326,8 +326,8 @@ Puisque nous avons parlé d'arbre, vous pouvez très bien imaginer les suites de
 répertoires et de sous-répertoires comme autant de branches qui se ramifient.
 
 ```
-$ tree /usr/share/icons/hicolor/
-/usr/share/icons/hicolor/
+$ tree /usr/share/icons/hicolor
+/usr/share/icons/hicolor
 ├── 16x16
 │   └── apps
 │       ├── fedora-logo-icon.png
@@ -350,8 +350,8 @@ feuilles. En d'autres termes, `tree -d` (comme *directory*) affichera seulement
 les répertoires d'une arborescence.
 
 ```
-$ tree -d /usr/share/icons/hicolor/
-/usr/share/icons/hicolor/
+$ tree -d /usr/share/icons/hicolor
+/usr/share/icons/hicolor
 ├── 16x16
 │   └── apps
 ├── 22x22

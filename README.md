@@ -25,4 +25,6 @@ Nicolas Kovacs (info@microlinux.fr)
 
 * [Créer : touch et mkdir](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-07-Creer.md)
 
+* [Copier, déplacer et renommer : cp et mv](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-08-Copier.md)
+
 

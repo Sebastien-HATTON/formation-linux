@@ -27,4 +27,5 @@ Nicolas Kovacs (info@microlinux.fr)
 
 * [Copier, déplacer et renommer : cp et mv](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-08-Copier.md)
 
+* [Supprimer : rm et rmdir](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-09-Supprimer.md)
 

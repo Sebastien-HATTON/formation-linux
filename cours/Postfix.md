@@ -8,7 +8,7 @@ Le MTA Postfix
 --------------
 
 Postfix est un serveur mail, et plus exactement un MTA (*Mail Transfer Agent*).
-Il gère l'envoi et la réception de mail par Internet en utilisant le protocole
+Il gère l'envoi et la réception de mails par Internet en utilisant le protocole
 SMTP.
 
 Le monde de l'Open Source offre toute une panoplie de MTA, parmi lesquels on
@@ -27,9 +27,9 @@ Vérifier si le serveur n'est pas blacklisté quelque part.
 Il faut impérativement disposer d'un ou de plusieurs noms de domaines
 enregistrés et valides. 
 
-  * slackbox.fr
+  * `slackbox.fr`
 
-  * unixbox.fr
+  * `unixbox.fr`
 
   * etc.
 

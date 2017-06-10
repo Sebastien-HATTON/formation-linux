@@ -147,7 +147,7 @@ inutiles, pour commencer avec quelques directives de base.
 inet_protocols = ipv4
 
 # Identification
-smtpd_banner = $myhostname ESMTP 
+smtpd_banner = $myhostname ESMTP $mail_name (CentOS)
 
 # Nom d'hôte pleinement qualifié du serveur
 myhostname = sd-41893.dedibox.fr

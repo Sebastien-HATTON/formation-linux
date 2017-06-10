@@ -310,7 +310,7 @@ par exemple.
 
 ```
 $ less Maildir/new/1497093622.V802I1480009M893901.sd-41893.dedibox.fr
-Return-Path: <info@microlinux.fr>                                                                                
+Return-Path: <info@microlinux.fr> 
 X-Original-To: microlinux@sd-41893.dedibox.fr
 Delivered-To: microlinux@sd-41893.dedibox.fr
 Received: from smtp.nfrance.com (smtp-6.nfrance.com [80.247.225.6])

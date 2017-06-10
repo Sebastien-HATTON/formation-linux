@@ -52,7 +52,7 @@ $ host 195.154.65.130
 Installation
 ------------
 
-Postfix est inclus dans une installation minimale de Slackware. S'il n'est pas
+Postfix est inclus dans une installation minimale de CentOS. S'il n'est pas
 présent sur le système, on peut l'installer comme ceci.
 
 ```
@@ -134,5 +134,50 @@ inet_interfaces = all
 
 Nous allons supprimer la plupart des paramètres redondants ou autrement
 inutiles, pour commencer avec quelques directives de base.
+
+```
+# /etc/postfix/main.cf
+
+# Désactiver l'IPv6
+inet_protocols = ipv4
+
+# Identification
+smtpd_banner = $myhostname ESMTP 
+
+# Nom d'hôte pleinement qualifié du serveur
+myhostname = sd-41893.dedibox.fr
+
+# Domaine du serveur
+mydomain = dedibox.fr
+
+# Domaine pour qualifier les adresses sans partie domaine
+myorigin = $myhostname
+
+# Domaines locaux
+mydestination = $myhostname, localhost.$mydomain, localhost
+
+# Envoi de mails sans authentification
+mynetworks = 127.0.0.0/8
+
+# Tables de correspondance
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+
+# Commande de débogage
+debugger_command =
+         PATH=/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin
+         ddd $daemon_directory/$process_name $process_id & sleep 5
+
+# Chemins des commandes
+sendmail_path = /usr/sbin/sendmail.postfix
+newaliases_path = /usr/bin/newaliases.postfix
+mailq_path = /usr/bin/mailq.postfix
+
+# Documentation
+manpage_directory = /usr/share/man
+sample_directory = /usr/share/doc/postfix-2.10.1/samples
+readme_directory = /usr/share/doc/postfix-2.10.1/README_FILES
+```
+
 
 

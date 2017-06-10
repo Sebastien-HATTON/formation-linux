@@ -3,6 +3,9 @@ Formation Administration Linux
 
 Nicolas Kovacs (info@microlinux.fr)
 
+Les bases de Linux
+------------------
+
 * [Introduction à Linux](https://github.com/kikinovak/formation-linux/blob/master/cours/Linux.md)
 
 * [Présentation de CentOS](https://github.com/kikinovak/formation-linux/blob/master/cours/CentOS.md)
@@ -28,4 +31,11 @@ Nicolas Kovacs (info@microlinux.fr)
 * [Copier, déplacer et renommer : cp et mv](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-08-Copier.md)
 
 * [Supprimer : rm et rmdir](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-09-Supprimer.md)
+
+*Travail en cours...*
+
+
+Serveur dédié
+-------------
+
 

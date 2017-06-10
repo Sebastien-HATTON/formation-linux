@@ -56,11 +56,16 @@ Postfix est inclus dans une installation minimale de CentOS. S'il n'est pas
 présent sur le système, on peut l'installer comme ceci.
 
 ```
-# yum install postfix mailx
+# yum install postfix
 ```
 
-Le paquet `mailx` fournit la commande `/bin/mail` qui nous sera utile pour
-tester l'envoi de mails.
+On installera également la commande `mail` (paquet `mailx`) et le client `mutt`
+pour pouvoir tester et gérer les mails en ligne de commande directement sur le
+serveur.
+
+```
+# yum install mailx mutt
+```
 
 
 Configuration initiale

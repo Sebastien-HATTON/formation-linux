@@ -56,8 +56,13 @@ Postfix est inclus dans une installation minimale de CentOS. S'il n'est pas
 présent sur le système, on peut l'installer comme ceci.
 
 ```
-# yum install postfix
+# yum install postfix mailx
+
 ```
+
+Le paquet `mailx` fournit la commande `/bin/mail` qui nous sera utile pour
+tester l'envoi de mails.
+
 
 Configuration initiale
 ----------------------
@@ -179,5 +184,43 @@ sample_directory = /usr/share/doc/postfix-2.10.1/samples
 readme_directory = /usr/share/doc/postfix-2.10.1/README_FILES
 ```
 
+Quelques remarques :
 
+  * Si l'IPv6 est désactivé au niveau du système, il faudra également le faire
+    ici grâce à la directive `inet_protocols`.
 
+  * `smtpd_banner` définit la chaîne de caractères avec laquelle Postfix
+    s'identifie auprès d'un autre MTA.
+
+  * `myhostname` est censé contenir le nom d'hôte pleinement qualifié du
+    serveur, c'est-à-dire le résultat de la commande `hostname --fqdn`.
+
+  * `myorigin` définit le domaine auquel sont associés des mails envoyés
+    localement. Par défaut, `myorigin` a la même valeur que `myhostname`.
+
+  * `mydestination` fournit la liste des domaines pour lesquels les messages
+    reçus doivent être stockés dans une boîte mail locale. Même si Postfix gère
+    plusieurs domaines, `mydestination` ne doit spécifier que le domaine
+    principal. Les domaines virtuels seront gérés par la directive
+    `virtual_alias_domains`, que nous verrons plus loin.
+
+  * `mynetworks` définit les adresses depuis lesquelles Postfix accepte les
+    mails sans authentification via SMTP. Les plages d'adresses fournies ici
+    désignent donc toutes les machines auxquelles Postfix fait confiance, si
+    l'on peut dire. Sur un serveur dédié public, il est impératif de définir
+    uniquement l'hôte local pour `mynetworks`, sous peine de se retrouver avec
+    une "pompe à merde", le terme communément utilisé pour les serveurs mails
+    mal configurés qui sont utilisés par des tiers malintentionnés pour l'envoi
+    massif de spams sans authentification. Les spammeurs du monde entier
+    adorent ce genre de machines.
+
+  * `alias_maps` définit l'emplacement de la table de correspondance, et
+    `alias_database` la base de données correspondante. Certaines informations
+    ne peuvent pas être facilement représentées dans `main.cf`. Les tables de
+    correspondance permettent de les stocker dans des fichiers externes.
+    Postfix n'utilise pas directement les fichiers texte, ce serait trop lent.
+    Au lieu de cela, les tables de correspondance de type *hash* (ou "tables de
+    hachage) servent pour construire des fichiers indexés, grâce à la
+    bibliothèque Berkeley DB. Le programme `postmap` est utilisé pour
+    construire les fichiers indexés. Pour mettre à jour les alias, on utilisera
+    la commande `newaliases`.

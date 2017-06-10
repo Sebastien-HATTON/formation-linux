@@ -57,7 +57,6 @@ présent sur le système, on peut l'installer comme ceci.
 
 ```
 # yum install postfix mailx
-
 ```
 
 Le paquet `mailx` fournit la commande `/bin/mail` qui nous sera utile pour

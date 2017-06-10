@@ -164,6 +164,12 @@ mydestination = $myhostname, localhost.$mydomain, localhost
 # Envoi de mails sans authentification
 mynetworks = 127.0.0.0/8
 
+# Relais
+relayhost =
+
+# Format de stockage
+home_mailbox = Maildir/
+
 # Tables de correspondance
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
@@ -214,6 +220,14 @@ Quelques remarques :
     massif de spams sans authentification. Les spammeurs du monde entier
     adorent ce genre de machines.
 
+  * `relayhost` définit le MTA auquel on est censé transférer les mails qui ne
+    doivent pas être acheminés localement. Dans notre configuration, cette
+    directive doit rester vide. On l'utilisera sur un serveur de réseau local
+    pour transférer les mails à un MTA public sur Internet.
+
+  * Le format de stockage par défaut de Postfix, c'est `mbox`. On préférera le
+    format `Maildir/`, bien plus adapté pour une configuration IMAP.
+
   * `alias_maps` définit l'emplacement de la table de correspondance, et
     `alias_database` la base de données correspondante. Certaines informations
     ne peuvent pas être facilement représentées dans `main.cf`. Les tables de
@@ -224,3 +238,152 @@ Quelques remarques :
     bibliothèque Berkeley DB. Le programme `postmap` est utilisé pour
     construire les fichiers indexés. Pour mettre à jour les alias, on utilisera
     la commande `newaliases`.
+
+Éditer la table de correspondance.
+
+```
+# /etc/postfix/aliases
+postmaster: root
+root      : microlinux
+```
+
+Construire le fichier indexé.
+
+```
+# newaliases
+```
+
+Premier test
+------------
+
+Activer et démarrer Postfix.
+
+```
+# systemctl enable postfix
+# systemctl start postfix
+```
+
+Vérifier si Postfix tourne correctement.
+
+```
+# systemctl status postfix
+● postfix.service - Postfix Mail Transport Agent
+   Loaded: loaded (/usr/lib/systemd/system/postfix.service; enabled; vendor preset: disabled)
+   Active: active (running) since sam. 2017-06-10 12:51:19 CEST; 47s ago
+   ...
+# cat /var/log/maillog
+... sd-41893 postfix/postfix-script[10097]: starting the Postfix mail system
+... sd-41893 postfix/master[10099]: daemon started -- version 2.10.1, configuration /etc/postfix
+```
+
+Basculer vers un compte utilisateur normal (`microlinux` dans l'exemple) et
+envoyer un mail vers un compte Webmail externe. Un point `.` sur une ligne à
+part marque la fin du message.
+
+```
+# su - microlinux
+Dernière connexion : samedi 10 juin 2017 à 10:18:37 CEST sur pts/0
+$ mail info@microlinux.fr
+Subject: Test Postfix
+Ceci est un test.
+.
+EOT
+```
+
+Se connecter au compte Webmail et vérifier si le message a bien été envoyé,
+puis répondre à ce message. Si tout se passe bien, le répertoire utilisateur
+contient un nouveau répertoire `~/Maildir`, qui ressemble à ceci.
+
+```
+$ tree Maildir/
+Maildir/
+├── cur
+├── new
+│   └── 1497093622.V802I1480009M893901.sd-41893.dedibox.fr
+└── tmp
+
+3 directories, 1 file
+```
+
+Le nouveau mail est un simple fichier texte, que l'on peut afficher avec `less`
+par exemple.
+
+```
+$ less Maildir/new/1497093622.V802I1480009M893901.sd-41893.dedibox.fr
+Return-Path: <info@microlinux.fr>                                                                                
+X-Original-To: microlinux@sd-41893.dedibox.fr
+Delivered-To: microlinux@sd-41893.dedibox.fr
+Received: from smtp.nfrance.com (smtp-6.nfrance.com [80.247.225.6])
+        by sd-41893.dedibox.fr (Postfix) with ESMTP id C59246405C8
+        for <microlinux@sd-41893.dedibox.fr>; Sat, 10 Jun 2017 13:20:22 +0200 (CEST)
+Received: from [192.168.2.2] (nikikovacs.pck.nerim.net [62.212.104.80])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp.nfrance.com (Postfix) with ESMTPSA id 2B1A5112818
+        for <microlinux@sd-41893.dedibox.fr>; Sat, 10 Jun 2017 13:20:22 +0200 (CEST)
+Reply-To: info@microlinux.fr
+Subject: Re: Test Postfix
+To: microlinux <microlinux@sd-41893.dedibox.fr>
+References: <20170610111955.15A726407E1@sd-41893.dedibox.fr>
+From: Nicolas Kovacs <info@microlinux.fr>
+Organization: Microlinux
+Message-ID: <a7153484-3cec-d2d0-5ec7-e1543f788646@microlinux.fr>
+Date: Sat, 10 Jun 2017 13:20:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.1.0
+MIME-Version: 1.0
+In-Reply-To: <20170610111955.15A726407E1@sd-41893.dedibox.fr>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.78 on 80.247.225.6
+
+Le 10/06/2017 à 13:19, microlinux a écrit :
+> Ceci est un test.
+> 
+
+Et voici la réponse.
+
+-- 
+Microlinux - Solutions informatiques durables
+7, place de l'église - 30730 Montpezat
+Web  : http://www.microlinux.fr
+Mail : info@microlinux.fr
+Tél. : 04 66 63 10 32
+```
+
+Gérer les mails en ligne de commande avec Mutt
+----------------------------------------------
+
+Mutt est un MUA (*Mail User Agent*) en ligne de commande. On peut l'utiliser
+sur des machines dépourvues d'interface graphique.
+
+Avant de lancer Mutt, éditer le fichier de configuration `~/.muttrc`.
+
+```
+# ~/.muttrc 
+set mbox_type=Maildir
+set folder="~/Maildir"
+set spoolfile="~/Maildir"
+set mbox="+Mailbox"
+my_hdr From: microlinux@sd-41893.dedibox.fr (Microlinux)
+my_hdr Reply-To: microlinux@sd-41893.dedibox.fr (Microlinux)
+```
+
+Lancer Mutt :
+
+```
+$ mutt
+```
+
+La fenêtre principale de Mutt affiche la boite de réception. Les nouveaux mails
+sont marqués par un `N`. Une barre d'état en haut de l'écran affiche les
+principaux raccourcis. En règle générale, Mutt fonctionne avec les mêmes
+raccourcis que Vim. Pour lire un message, il suffit de le sélectionner et
+d'appuyer sur *Entrée*.
+
+
+
+
+
+

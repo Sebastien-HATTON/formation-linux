@@ -34,6 +34,9 @@ Les bases de Linux
 
 * [Éditer des fichiers texte : Vi](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-10-Vim.md)
 
+* [Travailler moins pour taper plus](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-11-Confort.md)
+
+
 
 *Travail en cours...*
 

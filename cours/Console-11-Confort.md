@@ -164,7 +164,9 @@ $ ls -l f
 
 **Tab** :
 
+```
 $ ls -l fichier
+```
 
 `3`, **Tab** :
 

@@ -147,7 +147,9 @@ $ ls -l f
 
 **Tab** :
 
+```
 $ ls -l fichier
+```
 
 `1`, puis **Tab** :
 

@@ -32,6 +32,9 @@ Les bases de Linux
 
 * [Supprimer : rm et rmdir](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-09-Supprimer.md)
 
+* [Éditer des fichiers texte : Vi](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-10-Vim.md)
+
+
 *Travail en cours...*
 
 

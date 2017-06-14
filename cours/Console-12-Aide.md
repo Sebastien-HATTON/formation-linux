@@ -162,11 +162,12 @@ Ensuite, la *lingua franca* d'un grand nombre de projets du monde du libre
 projets localisés pour chaque pays (comme [le forum francophone de
 CentOS](https://fr.centos.org/)), mais très souvent, le gros de la
 communication passe par les forums, les listes de diffusion et les canaux IRC
-anglophones. Dans le cas de CentOS, c'est la *mailing list*
-`centos@centos.org`. Même s'il est théoriquement possible de survivre en tant
-qu'administrateur Linux sans parler un seul mot d'anglais, attendez-vous à
-quelques complications. Autant vouloir entamer une carrière au Vatican sans
-comprendre un mot de latin. 
+anglophones. Dans le cas de CentOS, la *mailing list*
+[centos@centos.org](https://lists.centos.org/mailman/listinfo/centos) constitue
+le principal canal de communication du projet. Même s'il est théoriquement
+possible de survivre en tant qu'administrateur Linux sans parler un seul mot
+d'anglais, attendez-vous à quelques complications.  Autant vouloir entamer une
+carrière au Vatican sans comprendre un mot de latin. 
 
 Si malgré tous ces avertissements, vous préférez afficher vos pages `man`
 traduites en français, installez le paquet correspondant.

@@ -216,16 +216,183 @@ migraines évitées. Vos yeux n'auront plus à effectuer des va-et-vient
 incessants entre les touches.
 
 
+La paresse devient un gage de qualité
+-------------------------------------
+
+La complétion automatique ne sert pas seulement à satisfaire le paresseux qui
+sommeille en nous tous. Elle joue un autre rôle pour le moins aussi important
+que celui de vous faire gagner du temps. Voyons un autre exemple pratique. 
+
+Le répertoire `/etc/X11/xorg.conf.d`est censé contenir la configuration du
+serveur graphique. Ne vous inquiétez pas si vous ne savez pas ce que c'est.
+Pour l'instant, nous aimerions seulement afficher le contenu de ce répertoire,
+sans trop nous soucier des détails techniques. Nous invoquons donc la commande
+suivante, sans utiliser la complétion automatique.
+
+```
+$ ls /etc/x11/xorg.conf.d
+```
+
+Et nous nous retrouvons face au message d'erreur suivant.
+
+```
+ls: impossible d'accéder à /etc/x11/xorg.conf.d: Aucun fichier ou dossier de ce type
+```
+
+Là, nous restons quelque peu perplexes. La documentation du serveur graphique a
+pourtant insisté sur l'utilisation de ce répertoire, et voilà qu'il n'existe
+pas. Que se passe-t-il donc ?
+
+Regardez bien : le sous-répertoire de `/etc` s'appelle `X11` (avec un `X`
+majuscule) et non `x11`, ce qui n'est pas la même chose. Maintenant, invoquez
+cette même commande, mais en utilisant la complétion automatique, c'est-à-dire
+en tapant...
+
+```
+$ ls /e
+```
+
+**Tab** :
+
+```
+$ ls /etc/
+```
+
+`X`, **Tab** :
+
+```
+$ ls /etc/X11/
+```
+
+`x`, **Tab** :
+
+```
+$ ls /etc/X11/xorg.conf.d/
+```
+
+Ici, le *shell* a complété le nom du répertoire correctement. Si nous avions
+essayé de taper `x` au lieu de `X` pour le répertoire `X11`, nous nous serions
+tout de suite aperçu de notre erreur, suite à l'absence pour le moins suspecte
+de `X11` dans la liste des répertoires proposés.
+
+Cette petite expérience nous permet de tirer la conclusion suivante. Outre
+l'avantage d'accélérer la saisie de façon considérable, la complétion
+automatique offre également un contrôle de qualité, en jouant un rôle non
+négligeable de correcteur.
 
 
+Répéter une commande
+--------------------
+
+Dans certains cas, le passage par la case départ est inévitable. Une fois que
+nous avons invoqué notre commande erronée et qu'elle nous a gratifié d'un
+message d'erreur, il va bien falloir se résoudre à la ressasir, en prenant soin
+de ne pas commettre de faute de frappe. Est-il donc vraiment nécessaire de tout
+recommencer depuis le début, juste à cause d'une petite coquille ? Non, comme
+vous le montre cet autre exemple. 
+
+```
+$ ls /etc/X11/xorg.donf.d
+ls: impossible d'accéder à /etc/X11/xorg.donf.d: Aucun fichier ou dossier de ce type
+```
+
+Après la petite surprise initiale, vous vous apercevez tout de suite de
+l'erreur. Vous avez tapé `xorg.donf.d` au lieu de `xorg.conf.d`. Pour corriger
+votre erreur, il vous suffirait de ressaisir la commande en prenant soin, cette
+fois-ci, d'écrire correctement le nom du répertoire. Avant de faire cela,
+appuyez simplement sur la touche **FlècheHaut** et voyez ce qui se passe.
+
+```
+$ ls /etc/X11/xorg.donf.d
+```
+
+En effet, votre *shell* a gardé la dernière commande en mémoire. Dans ce cas,
+il sera plus simple de remplacer le `d` par un `c` que de retaper l'intégralité
+de la commande. 
+
+Ce n'est pas tout. Actionnez plusieurs fois de suite la touche **FlècheHaut**
+et observez ce qui se passe. Apparemment, le *shell* n'a pas mémorisé seulement
+la dernière commande, mais toutes celles que vous avez pu invoquer depuis belle
+lurette. Ajoutez à cela la touche **FlècheBas** et vous voilà capable de
+naviguer dans l'historique de toutes les commandes saisies jusque-là. Enfin,
+pas toutes, il y a une limite quand-même. 
 
 
+Utiliser l'historique des commandes
+-----------------------------------
+
+Il existe un moyen très simple d'afficher la liste de toutes les commandes que
+vous avez pu saisir.
+
+```
+$ history
+...
+558  alias rm='rm -i'
+559  mkdir repertoirebidon
+560  touch repertoirebidon/fichierbidon
+561  rm -rf repertoirebidon/
+562  vimtutor
+...
+```
+
+Pour répéter l'une des commandes dans la liste, remontez dans l'historique en
+appuyant autant de fois que nécessaire sur la touche **FlècheHaut**. Dans
+certains cas, ce sera un exercice fastidieux et il vaut mieux afficher
+l'historique complet, puis sélectionner la commande directement. Pour ce faire,
+il suffit de taper un point d'exclamation `!` suivi du numéro de la commande.
+Admettons que je veuille réinvoquer la commande `mkdir repertoirebidon` de
+l'exemple précédent, il me suffirait de faire ceci.
+
+```
+$ !559
+mkdir repertoirebidon
+```
+
+Soyez tout de même vigilant en utilisant cette fonctionnalité du *shell*. La
+commande est exécutée directement, sans attendre une quelconque confirmation
+avec la touche **Entrée**. Ne l'utilisez donc pas avec des commandes
+destructives comme `rm`.
 
 
+Invoquer une commande en utilisant la recherche inversée
+--------------------------------------------------------
 
+Dans le rayon "historique du shell", je vous montre une dernière fonctionnalité
+très utile au quotidien : la recherche inversée ou *reverse search*. Admettons
+que la dernière fois que vous ayez invoqué la commande `mkdir`, c'était pour
+créer `repertoirebidon`. Admettons encore que vous ayez effacé
+`repertoirebidon` par la suite et que vous souhaitiez le recréer maintenant.
+Pour ce faire, vous avez plusieurs possibilités.
 
+  * invoquer `mkdir repertoirebidon` tout simplement, en saisissant tous les
+    caractères de la commande ;
 
+  * actionner la touche **FlècheHaut** plusieurs fois de suite, jusqu'à ce que
+    vous finissiez par tomber sur la commande souhaitée ;
 
+  * afficher l'historique (`history`), chercher la commande que vous souhaitez,
+    puis l'exécuter par le biais du point d'exclamation `!` suivi du numéro
+    dans l'historique.
+
+Il existe une autre solution, beaucoup plus simple. Tapez simplement
+**Ctrl**+**R** et vous verrez que votre invite de commande change.
+
+```
+(reverse-i-search)`': 
+```
+
+À présent, dès que vous tapez les premiers caractères de la commande, le
+*shell* complète instantanément avec ce qu'il trouve dans l'historique. En
+l'occurrence, il me suffit ici de saisir `m` et `k` pour obtenir ce que je
+veux.
+
+```
+(reverse-i-search)`mk': mkdir repertoirebidon
+```
+
+Il ne me reste qu'à confirmer par **Entrée** pour exécuter la commande.
+Alternativement, je peux appuyez une deuxième fois sur **Ctrl**+**R** pour
+afficher la prochaine commande dans l'historique qui commence par `mk`.
 
 
 

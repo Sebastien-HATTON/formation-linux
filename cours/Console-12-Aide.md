@@ -158,11 +158,11 @@ d'autres langues que l'anglais. Leur traduction dans toutes les langues est une
 entreprise d'une envergure pharaonique. 
 
 Ensuite, la *lingua franca* d'un grand nombre de projets du monde du libre
-(comme CentOS) reste l'anglais. Il existe certes des projets localisés pour
-chaque pays (comme le forum francophone
-[https://fr.centos.org/](https://fr.centos.org/), mais très souvent, le gros de
-la communication passe par les forums, les listes de diffusion et les canaux
-IRC anglophones. Dans le cas de CentOS, c'est la *mailing list*
+(comme [CentOS](https://www.centos.org/)) reste l'anglais. Il existe certes des
+projets localisés pour chaque pays (comme [le forum francophone de
+CentOS](https://fr.centos.org/)), mais très souvent, le gros de la
+communication passe par les forums, les listes de diffusion et les canaux IRC
+anglophones. Dans le cas de CentOS, c'est la *mailing list*
 `centos@centos.org`. Même s'il est théoriquement possible de survivre en tant
 qu'administrateur Linux sans parler un seul mot d'anglais, attendez-vous à
 quelques complications. Autant vouloir entamer une carrière au Vatican sans
@@ -217,6 +217,7 @@ DESCRIPTION
        /b/a et /a/x dans /b/a/x au cas où /b existe déjà, mais il copiera /a
        sur /b et /a/x dans /b/x si /b n'existait pas encore. Enfin, si  /b
        était  un fichier ordinaire, la copie échouera.
+
 ...
 ```
 

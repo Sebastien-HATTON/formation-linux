@@ -359,7 +359,7 @@ pour quitter la page `info`.
 
 L'organisation d'une page `info` est comparable au fonctionnement d'un site
 web. Les pages y sont organisées hiérarchiquement, le passage d'une page à
-l'autre se faisant par le biais d'hyperliens. Le bouton **Page précédente** du
+l'autre se faisant par le biais d'hyperliens. Le bouton *Page précédente* du
 navigateur permet de revenir en arrière. 
 
 À en juger par les commentaires des utilisateurs chevronnés de systèmes Unix

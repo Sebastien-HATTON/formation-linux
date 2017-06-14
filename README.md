@@ -36,6 +36,9 @@ Les bases de Linux
 
 * [Travailler moins pour taper plus](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-11-Confort.md)
 
+* [Consulter l'aide en ligne : man et info](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-12-Aide.md)
+
+
 
 
 *Travail en cours...*

@@ -222,4 +222,193 @@ DESCRIPTION
 ...
 ```
 
+Comment lire une page man ?
+---------------------------
 
+Les pages de manuel en ligne (ou *pages man*) sont toutes plus ou moins
+organisées de la même façon.
+
+  * Tout en haut de la page se trouve la commande, avec son numéro de chapitre,
+    par exemple `CP(1)`. Traditionnellement, les pages de manuel sont
+    organisées en huit sections distinctes, que nous n'allons pas toutes
+    énumérer ici. Retenez seulement que certaines commandes intéressent les
+    utilisateurs du système, alors que d'autres seront réservées à
+    l'administrateur. Pour comprendre cette distinction, affichez la page du
+    manuel de `cfdisk`, une commande qui sert à partitionner les disques durs.
+    En haut de la page, `CFDISK(8)` vous indique qu'il s'agit d'une page de
+    manuel de la section 8 et donc d'une commande réservée à l'administrateur
+    du système. Les commandes des simples utilisateurs sont toutes regroupées
+    dans la section 1. Certaines commandes disposent de leur page de manuel
+    dans chaque section. Dans ce cas, il est nécessaire de spécifier le numéro
+    de section pour les afficher séparément. À titre d'exemple, essayez
+    successivement `man 1 printf` et `man 3 printf`.
+    
+  * L'en-tête intitulé `NAME` (ou `NOM`) fournit une description succincte de
+    la commande.
+
+  * La section `SYNOPSIS` désigne la syntaxe de la commande, c'est-à-dire la
+    façon dont il faut invoquer les options et les arguments. Ceux-ci peuvent
+    être facultatifs ou obligatoires.
+
+  * `DESCRIPTION` fournit une explication détaillée du fonctionnement de la
+    commande.
+
+  * La section `OPTIONS` affiche une liste exhaustive de toutes les options
+    applicables à la commande, en les détaillant une par une. Pour comprendre
+    de quoi il s'agit, affichez par exemple la page de manuel de la commande
+    `ls` (`man ls`) et essayez de retrouver les options qui vous sont déjà
+    familières.
+
+  * Plus loin, la section `BUGS` (ou `BOGUES`) est quelque chose que vous
+    chercherez en vain chez un éditeur de logiciels propriétaires. Si la
+    commande a pu présenter une quelconque anomalie ou un quelconque
+    dysfonctionnement dans le passé, cette section vous en informe. Voyez par
+    exemple la page de manuel de `fdisk` pour une telle section.
+
+  * `SEE ALSO` (`VOIR AUSSI`) vous renvoie d'une part vers une documentation
+    plus détaillée (les pages `info`, que nous verrons tout de suite), d'autre
+    part vers des commandes "cousines", c'est-à-dire en relation étroite. La
+    page de manuel de `fdisk` vous renverra ainsi vers `cfdisk`, `parted` et
+    `sfdisk`, trois autres commandes pour manipuler les tables de partitions
+    sous Linux.
+
+  * Les pages de manuel en ligne comportent également souvent une section
+    `AUTHORS` (`AUTEURS`) avec des informations de contact sous forme d'adresse
+    web ou de courrier électronique, ce qui permet de signaler d'éventuels
+    bogues. Ne vous sentez pas trop concerné par ceci, du moins pas pour
+    l'instant. 
+
+
+Recherche dans les pages de manuel
+----------------------------------
+
+J'ai dit plus haut que les pages de manuel en ligne s'affichaient par le biais
+du visualiseur `less`. Cela signifie que nous pouvons également nous servir des
+fonctions de recherche intégrées dans `less`. Pour essayer ceci, cherchons par
+exemple toutes les occurrences du mot "modification" dans la page de manuel de
+`ls`. Une fois que la page s'affiche, invoquez la fonctionnalité de recherche
+grâce à la barre oblique `/` suivie de la chaîne de caractères (`modification`)
+que vous souhaitez trouver dans le texte. Certaines pages de manuel sont assez
+longues, et la fonction de recherche pourra s'avérer utile pour trouver
+rapidement le brin d'information qu'il vous faut. 
+    
+
+Afficher le manuel en ligne : info
+----------------------------------
+
+Dans certains cas, les renseignements fournis par la commande `man` s'avèrent
+insuffisants. Essayez par exemple d'obtenir des informations sur l'interpréteur
+de commandes Bash en tapant `man bash`. Vous obtenez alors une série de pages
+pour le moins cryptiques, qui ne vous sembleront probablement pas très
+parlantes. 
+
+Voici comment afficher un manuel bien plus complet.
+
+```
+$ info bash
+
+File: bash.info,  Node: Top,  Next: Introduction,  Prev: (dir),  Up: (dir)
+
+Bash Features
+*************
+
+This text is a brief description of the features that are present in the
+Bash shell (version 4.2, 28 December 2010).
+
+   This is Edition 4.2, last updated 28 December 2010, of 'The GNU Bash
+Reference Manual', for 'Bash', Version 4.2.
+
+   Bash contains features that appear in other popular shells, and some
+features that only appear in Bash.  Some of the shells that Bash has
+borrowed concepts from are the Bourne Shell ('sh'), the Korn Shell
+('ksh'), and the C-shell ('csh' and its successor, 'tcsh').  The
+following menu breaks the features up into categories based upon which
+one of these other shells inspired the feature.
+
+   This manual is meant as a brief introduction to features found in
+Bash.  The Bash manual page should be used as the definitive reference
+on shell behavior.
+
+* Menu:
+
+* Introduction::                An introduction to the shell.
+* Definitions::                 Some definitions used in the rest of this
+                                manual.
+* Basic Shell Features::        The shell "building blocks".
+* Shell Builtin Commands::      Commands that are a part of the shell.
+* Shell Variables::             Variables used or set by Bash.
+* Bash Features::               Features found only in Bash.
+* Job Control::                 What job control is and how Bash allows you
+                                to use it.
+* Command Line Editing::        Chapter describing the command line
+                                editing features.
+* Using History Interactively:: Command History Expansion
+* Installing Bash::             How to build and install Bash on your system.
+...
+```
+
+À la différence d'une simple page `man`, vous disposez ici d'un curseur.
+Celui-ci vous permet de naviguer de page en page, en suivant les liens. Une
+page `info` est en fait une véritable arborescence de pages organisées de façon
+hiérarchique. Pour naviguer dans cette arborescence, il suffit de placer le
+curseur sur les bouts de texte compris entre une étoile `*` et un deux-points
+`:`. La touche **Entrée** vous permet alors de vous rendre dans le noeud
+(*node*) correspondant. Pour revenir en arrière, utilisez la touche **U**
+(comme *up*, c'est-à-dire "remonter"). Là aussi, servez-vous du raccourci **Q**
+pour quitter la page `info`.
+
+L'organisation d'une page `info` est comparable au fonctionnement d'un site
+web. Les pages y sont organisées hiérarchiquement, le passage d'une page à
+l'autre se faisant par le biais d'hyperliens. Le bouton **Page précédente** du
+navigateur permet de revenir en arrière. 
+
+À en juger par les commentaires des utilisateurs chevronnés de systèmes Unix
+dans les forums ou sur les listes de diffusion, les pages `info` ont moins
+bonne presse que les pages `man`, en raison de leur système de navigation
+quelque peu désuet. 
+
+La formule magique à retenir
+----------------------------
+
+Votre mémoire est une véritable passoire et vous oubliez sans cesse les
+commandes les plus basiques, au point de vous retrouver incapable d'utiliser
+l'aide en ligne ? Ce n'est pas bien grave. Retenez juste ceci.
+
+```
+$ man man
+```
+
+La même chose vaut pour l'utilisation des pages `info`.
+
+```
+$ info info
+```
+
+Bien évidemment, il existe une quantité de façons d'obtenir de l'aide pour
+votre système Linux : les sites de documentation, les blogs, les forums, les
+listes de diffusion, les *newsgroups* (ou groupes de discussion Usenet), les
+canaux IRC spécialisés, sans parler de la documentation spécifique à chaque
+distribution. Dans le monde Linux, ce n'est certainement pas la documentation
+qui fait défaut, mais il est parfois difficile de s'y retrouver. Pour
+l'instant, n'oubliez pas que l'aide la plus immédiate lorsque vous utilisez la
+ligne de commande se trouve à portée de doigts.
+
+
+La liste de diffusion de CentOS
+-------------------------------
+
+La meilleure adresse pour trouver de l'aide avec un système CentOS, c'est sans
+doute [la liste de diffusion
+anglophone](https://lists.centos.org/mailman/listinfo/centos). Vous y trouverez
+non seulement toute l'équipe de CentOS, mais également une communauté
+sympathique d'administrateurs système, de développeurs et autres professionnels
+compétents, qui apporteront des réponses aux questions les plus pointues que
+vous pourrez leur poser. Je suis moi-même un utilisateur régulier de cette
+*mailing list*. 
+
+
+La communauté francophone de CentOS
+-----------------------------------
+
+Si vous préférez trouver de l'aide en français, visitez le [forum de la
+communauté francophone de CentOS](https://fr.centos.org/forums/).

@@ -38,6 +38,9 @@ Les bases de Linux
 
 * [Consulter l'aide en ligne : man et info](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-12-Aide.md)
 
+* [Gérer les utilisateurs](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-13-Utilisateurs.md)
+
+
 
 
 

@@ -81,6 +81,17 @@ Retapez le nouveau mot de passe :
 passwd : mise à jour réussie de tous les jetons d'authentification.
 ```
 
+Un coup d'oeil rapide dans la page `man` de `useradd(8)` vous renseigne sur la
+signification exacte de l'option `-c`, que vous avez probablement devinée dans
+le contexte.
+
+```
+-c, --comment COMMENTAIRE
+    Toute chaîne de texte. C'est généralement une description courte du compte,
+    elle est actuellement utilisée comme champ pour le nom complet de
+    l'utilisateur.
+```
+
 Notez qu'il y a une vérification sur la robustesse du mot de passe défini. Pour
 un utilisateur quelconque, le système refuserait tout simplement de créer le
 mot de passe s'il est faible (puisque la commande `passwd` peut être invoquée
@@ -99,4 +110,69 @@ passwd : mise à jour réussie de tous les jetons d'authentification.
 ```
 
 Procédez de même pour créer les autres utilisateurs de la machine.
+
+
+Utiliser n'est pas administrer
+------------------------------
+
+Tout au long de notre initiation à la ligne de commande, nous avons travaillé
+en tant que simples utilisateurs (à quelques rares exceptions près) pour créer,
+éditer, visualiser, déplacer, copier et effacer des fichiers. Ces tâches ne
+mettaient pas en péril le fonctionnement du système ou les données des autres
+utilisateurs et ne nécessitaient par conséquent aucun privilège spécifique. Il
+n'en est plus de même pour la gestion des utilisateurs, qui comprend entre
+autres choses :
+
+  * la création d'un nouvel utilisateur ;
+
+  * la définition de son mot de passe ;
+
+  * la configuration de ses droits : à quoi aura-t-il accès dans le système ?
+
+  * la suppression éventuelle de l'utilisateur ainsi que de toutes ses données.
+
+
+Changer d'identité et devenir root
+----------------------------------
+
+Lors de l'installation du système, nous avons défini un mot de passe pour
+l'utilisateur `root`. Un peu plus haut, nous avons eu besoin des privilèges de
+`root` pour créer quelques utilisateurs supplémentaires, que nous avons acquis
+en nous déconnectant et en nous reconnectant. Or, il existe un moyen bien plus
+simple grâce à la commande `su` (*switch user*, c'est-à-dire "changer
+d'utilisateur"). Tapez ce qui suit, en saisissant votre mot de passe `root`
+lorsque le système vous le demande.
+
+```
+[kikinovak@centosbox ~]$ su -
+Mot de passe : 
+Dernière connexion : jeudi 15 juin 2017 à 14:01:26 CEST sur pts/0
+[root@centosbox ~]# 
+```
+
+Notez le tiret `-` qui suit la commande `su`. Il précise qu'il faut devenir
+`root` en récupérant toutes les variables d'environnement de ce compte. Nous y
+reviendrons. Contentez-vous pour l'instant de connaître la démarche.
+
+Une mise en garde solennelle s'impose. En acquérant les droits de `root`, vous
+voilà en quelque sorte détenteur du fameux bouton rouge. Cela ne veut pas dire
+que vous allez forcément déclencher une guerre nucléaire, mais une simple
+commande bien sentie suffirait à enclencher une apocalypse numérique sur votre
+système. En un mot : prudence. Et gare aux fautes de frappe.
+
+S'il est utile de savoir comment acquérir les pleins pouvoirs sur la machine,
+il est tout aussi indispensable de savoir comment revenir en sens inverse pour
+se débarrasser de tous ces super-pouvoirs lorsqu'on n'en a plus besoin. Dans ce
+cas, c'est exactement la même commande que pour quitter une session dans la
+console. Vous avez donc le choix entre les deux commandes `logout` et `exit`, à
+moins que vous ne préfériez le raccourci clavier **Ctrl**+**D**. 
+
+```
+[root@centosbox ~]# exit
+déconnexion
+[kikinovak@centosbox ~]$ 
+```
+
+
+
 

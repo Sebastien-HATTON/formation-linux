@@ -11,3 +11,5 @@ serveur dédié, une interface web correspondante vous permettra d’installer �
 distance l’OS de votre choix, à condition bien sûr que celui-ci figure dans la
 panoplie de systèmes proposés. Vous serez ensuite seul maître à bord de cette
 machine, et vous pourrez en faire ce que vous voudrez.
+
+  ![Serveur dédié Dedibox](../images/splash-online.png)

@@ -60,5 +60,5 @@ Poste de travail
 
 * [Installation de Node.js](https://github.com/kikinovak/formation-linux/blob/master/cours/Nodejs.md)
 
-* [Éditer les fichiers Markdown avec Vim](https://github.com/kikinovak/formation-linux/blob/master/cours/Vim-Markdown.mf)
+* [Éditer les fichiers Markdown avec Vim](https://github.com/kikinovak/formation-linux/blob/master/cours/Vim-Markdown.md)
 

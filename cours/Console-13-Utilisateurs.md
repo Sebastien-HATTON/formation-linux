@@ -173,6 +173,164 @@ déconnexion
 [kikinovak@centosbox ~]$ 
 ```
 
+Savoir qui l'on est
+-------------------
+
+La commande `su` ne nous permet pas seulement de devenir `root`. Si le système
+dispose d'un utilisateur `fteyssier`, je pourrais très bien *devenir*
+`fteyssier` en invoquant la commande suivante (et en saisissant son mot de
+passe).
+
+```
+[kikinovak@centosbox ~]$ su - fteyssier
+Mot de passe : 
+[fteyssier@centosbox ~]$ 
+```
+
+Là encore, notez l'utilisation du tiret `-` pour indiquer que vous souhaitez
+devenir un autre utilisateur en utilisant ses variables d'environnement.
+L'invite de commandes (`[fteyssier@centosbox ~]$`) nous indique qu'un
+changement d'identité a eu lieu. Pour le vérifier, nous avons tout loisir de
+demander à notre système qui nous sommes, grâce à la commande `whoami` (*Who am
+I ?", "Qui suis-je ?"). Voici une petite démonstration pratique.
+
+```
+$ su - fteyssier
+Mot de passe : 
+[fteyssier@centosbox ~]$ whoami
+fteyssier
+[fteyssier@centosbox ~]$ exit
+déconnexion
+[kikinovak@centosbox ~]$ whoami
+kikinovak
+[kikinovak@centosbox ~]$ su -
+Mot de passe : 
+[root@centosbox ~]# whoami
+root
+[root@centosbox ~]# exit
+déconnexion
+[kikinovak@centosbox ~]$ whoami
+kikinovak
+```
+
+Vous remarquerez que si j'invoque `su` sans autre argument que le tiret, cela
+revient exactement à la même chose que `su - root`.
+
+```
+[kikinovak@centosbox ~]$ su -
+Mot de passe : 
+[root@centosbox ~]# 
+```
+
+En savoir un peu plus sur les utilisateurs : id, groups, finger
+---------------------------------------------------------------
+
+Chacun des utilisateurs que nous avons créés jusqu'ici possède un certain
+nombre de caractéristiques : son UID unique, son GID, les groupes secondaires
+auxquels il appartient, son répertoire d'utilisateur, son *shell* de connexion,
+etc. Voyons maintenant comment afficher ces différentes informations.
+Commençons par nous-mêmes, en utilisant la commande `id`.
+
+```
+$ id
+uid=1000(kikinovak) gid=1000(kikinovak) groupes=1000(kikinovak),10(wheel)
+contexte=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+```
+
+Invoquée sans autre argument, la commande `id` nous affiche l'UID, le GID,
+ainsi que la liste complète des groupes secondaires auxquels l'utilisateur est
+affecté. Elle nous affiche également le contexte SELinux (*Security Enhanced
+Linux*), que nous allons laisser de côté pour l'instant. SELinux est une
+technologie relativement complexe, et nous l'aborderons plus loin. 
+
+Afficher l'UID (*User Identification*) de l'utilisateur :
+
+```
+$ id -u
+1000
+```
+
+
+Afficher le GID (Group Identification) :
+
+```
+$ id -g
+1000
+```
+
+Afficher le nom du groupe :
+
+```
+$ id -gn
+kikinovak
+```
+
+Afficher les groupes dont l'utilisateur est membre :
+
+```
+$ id -G
+1000 10
+```
+
+Afficher les noms des groupes dont l'utilisateur est membre :
+
+```
+$ id -Gn
+kikinovak wheel
+$ groups
+kikinovak wheel
+```
+
+Vous noterez que pour cette dernière commande, vous disposez de deux
+alternatives possibles.
+
+Évidemment, personne ne vous demande de retenir toutes ces options par coeur.
+N'oubliez pas que vous avez la page du manuel pour cela. 
+
+```
+$ man id
+```
+
+Pour en savoir plus sur les autres utilisateurs du système, il suffit de
+fournir leur nom en argument. Ces informations sont accessibles à tous les
+utilisateurs non privilégiés du système.
+
+```
+$ id adebuf
+uid=1001(adebuf) gid=1001(adebuf) groupes=1001(adebuf)
+$ id jmortreux
+uid=1002(jmortreux) gid=1002(jmortreux) groupes=1002(jmortreux)
+```
+
+Les arguments et les options peuvent évidemment être combinés à souhait, par
+exemple pour afficher l'UID d'un autre utilisateur.
+
+```
+$ id -u fteyssier
+1004
+```
+
+Enfin, la commande `finger` permet d'afficher quelques renseignements sur les
+utilisateurs du système comme le nom, le répertoire utilisateur et le *shell*
+de connexion utilisé. Elle ne fait pas partie du système minimal, mais nous
+pouvons l'installer facilement.
+
+```
+# yum install finger
+```
+
+Une fois installée, la commande `finger` affiche ces informations.
+
+```
+$ finger fteyssier
+Login: fteyssier                        Name: Franck Teyssier
+Directory: /home/fteyssier              Shell: /bin/bash
+Last login ven. juin 16 10:49 (CEST) on pts/0
+...
+```
 
 
 
+
+
+ 

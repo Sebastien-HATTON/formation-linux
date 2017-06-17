@@ -226,7 +226,7 @@ En savoir un peu plus sur les utilisateurs : id, groups, finger
 ---------------------------------------------------------------
 
 Chacun des utilisateurs que nous avons créés jusqu'ici possède un certain
-nombre de caractéristiques : son UID unique, son GID, les groupes secondaires
+nombre de caractéristiques, comme son UID unique, son GID, les groupes secondaires
 auxquels il appartient, son répertoire d'utilisateur, son *shell* de connexion,
 etc. Voyons maintenant comment afficher ces différentes informations.
 Commençons par nous-mêmes, en utilisant la commande `id`.
@@ -328,6 +328,209 @@ Directory: /home/fteyssier              Shell: /bin/bash
 Last login ven. juin 16 10:49 (CEST) on pts/0
 ...
 ```
+
+Comprendre le fichier /etc/passwd
+---------------------------------
+
+Essayons de voir un peu plus en détail comment se passe la gestion des
+utilisateurs au niveau du système. Affichez le contenu du fichier
+`/etc/passwd`.
+
+```
+$ less /etc/passwd
+
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+...
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+chrony:x:997:995::/var/lib/chrony:/sbin/nologin
+kikinovak:x:1000:1000:Kiki Novak:/home/kikinovak:/bin/bash
+adebuf:x:1001:1001:Agnès Debuf:/home/adebuf:/bin/bash
+jmortreux:x:1002:1002:Jean Mortreux:/home/jmortreux:/bin/bash
+fbanester:x:1003:1003:Fanny Banester:/home/fbanester:/bin/bash
+fteyssier:x:1004:1004:Franck Teyssier:/home/fteyssier:/bin/bash
+```
+
+Certains d'entre vous seront peut-être vaguement surpris voire inquiets de
+pouvoir lire ce fichier sans autres privilèges. Ceest tout à fait normal et
+nous y viendrons.
+
+Le fichier `/etc/passwd` contient l'ensemble des informations qui régissent la
+connexion des utilisateurs. Chaque ligne de ce fichier correspond à un
+utilisateur. Essayez de repérer l'entrée qui correspond à votre humble
+personne.
+
+```
+kikinovak:x:1000:1000:Kiki Novak:/home/kikinovak:/bin/bash
+```
+
+Comment décrypter ce charabia ? Il s'agit en fait d'une série de champs séparés
+par deux-points, où l'on trouve dans l'ordre...
+
+  * l'identifiant de connexion (`kikinovak`) ;
+
+  * la lettre `x`, signifiant que le mot de passe crypté de l'utilisateur se
+    situe dans le fichier `/etc/shadow` ;
+
+  * l'UID (*User Identification*, ici `1000`), que le système utilise plutôt
+    que votre identifiant pour gérer les droits d'accès de vos fichiers ;
+
+  * le GID (*Group Identification*, `1000` ici), groupe primaire auquel
+    appartient l'utilisateur ;
+
+  * le nom complet de l'utilisateur (`Kiki Novak`) ;
+
+  * le répertoire de connexion (`/home/kikinovak`) ;
+
+  * le *shell* de connexion de l'utilisateur (`/bin/bash`).
+
+Pour être précis, le *shell* de connexion est la commande que le système doit
+exécuter lorsque l'utilisateur se connecte. En pratique, il s'agit de
+l'interpréteur de commandes de l'utilisateur.
+
+
+Les utilisateurs système
+------------------------
+
+Qui sont donc tous ces utilisateurs mystérieux sur votre système ? Vous n'avez
+pas défini ces gens aux identifiants pour le moins curieux : `daemon`,
+`operator`, `nobody`... Rassurez-vous, votre machine n'est peuplée ni par des
+démons, ni par des hommes invisibles. Il s'agit là des utilisateurs système. 
+
+À titre d'exemple, si vous installez le serveur web Apache (`yum install
+httpd`), l'installation crée un utilisateur système `apache`. Lorsque le
+serveur Apache est lancé, le processus "n'appartient" pas à l'utilisateur
+`root`, mais à l'utilisateur système `apache`. Il peut arriver (et dans le
+monde réel, cela arrive effectivement) qu'une personne malintentionnée décide
+d'attaquer le serveur, en exploitant une faille de sécurité. Or, si le serveur
+fonctionnait avec des droits `root`, cela rendrait l'attaquant tout-puissant
+sur la machine. Le recours à un utilisateur système permet donc de limiter les
+dégâts dans un tel cas de figure. Je vous épargne les détails complexes d'une
+telle situation. Retenez juste que l'existence des utilisateurs système est
+avant tout motivée par des considérations de sécurité.
+
+Dorénavant, nous pouvons établir une classification sommaire des utilisateurs
+sur notre machine. 
+
+  * L'administrateur `root`, l'utilisateur tout-puissant. Son UID est toujours
+    égal à 0.
+
+  * Les utilisateurs système, gérant les droits d'accès d'un certain nombre de
+    services sur la machine. Leur UID est compris entre 1 et 999.
+
+  * Les utilisateurs "normaux", c'est-à-dire les personnes physiques comme vous
+    et moi (`kikinovak`, `adebuf`, `jmortreux`). Notre UID sera supérieur ou
+    égal à 1000.
+
+
+Trouver les utilisateurs physiques du système
+---------------------------------------------
+
+Admettons que nous voulions afficher tous les *vrais* utilisateurs,
+c'est-à-dire tous ceux qui ne sont *pas* des utilisateurs système. Comment nous
+y prendrions-nous ? 
+
+Une première approche consisterait à considérer que les vrais utilisateurs
+disposent tous d'un *shell* de connexion, en l'occurrence `/bin/bash`. Il
+suffirait donc d'afficher toutes les lignes du fichier `/etc/passwd` qui
+contiennent la chaîne de caractères `/bin/bash` ou, plus simplement, `bash`.
+C'est tout à fait possible. J'en profite pour vous présenter la commande
+`grep`.
+
+```
+$ grep bash /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+kikinovak:x:1000:1000:Kiki Novak:/home/kikinovak:/bin/bash
+adebuf:x:1001:1001:Agnès Debuf:/home/adebuf:/bin/bash
+jmortreux:x:1002:1002:Jean Mortreux:/home/jmortreux:/bin/bash
+fbanester:x:1003:1003:Fanny Banester:/home/fbanester:/bin/bash
+fteyssier:x:1004:1004:Franck Teyssier:/home/fteyssier:/bin/bash
+```
+
+L'opération ressemble à un succès. Même si `root` semble être un cas à part,
+les utilisateurs en chair et en os sont tous là. Or, notre approche souffre
+d'un certain nombre de points faibles. Si l'un de nos utilisateurs dédide de
+choisir un autre shell de connexion que `/bin/bash` (ce qui est tout à fait
+possible), il ne s'affichera plus. Essayons donc une approche différente.
+
+Nous avons vu plus haut que ce qui distingue les utilisateurs "en chair et en
+os", c'est leur UID supérieur ou égal à 1000. Nous avons vu également que le
+fichier `/etc/passwd` était organisé en colonnes séparées par des deux-points.
+Je vais me servir de l'outil de filtrage `awk` pour arriver à mes fins. GNU AWK
+est un véritable langage de traitement de lignes qui sert à manipuler des
+fichiers textes. Voyons quelques exemples simples. 
+
+La première colonne du fichier `/etc/passwd` contient les noms d'utilisateurs.
+
+```
+$ awk -F: '{print $1}' /etc/passwd
+root
+bin
+daemon
+...
+kikinovak
+adebuf
+jmortreux
+fbanester
+fteyssier
+```
+
+L'option `-F` indique à `awk` que le fichier `/etc/passwd` utilise les
+deux-points comme séparateur, et `'{print $1}' signifie "affiche la première
+colonne".
+
+Les UID des utilisateurs figurent dans la troisième colonne. Je peux donc les
+"extraire" de la sorte.
+
+```
+$ awk -F: '{print $3}' /etc/passwd
+0
+1
+2
+3
+...
+1000
+1001
+1002
+1003
+1004
+```
+
+À partir de là, j'ai la réponse à ma question. Il suffit que j'affiche la
+première colonne (`$1`) de chaque ligne où le contenu de la troisième colonne
+(`$3`) est strictement supérieur à 999.
+
+```
+$ awk -F: '$3 > 999 {print $1}' /etc/passwd
+kikinovak
+adebuf
+jmortreux
+fbanester
+fteyssier
+```
+
+Enfin, je peux combiner la commande précédente avec `sort` pour afficher le
+résultat par ordre alphabétique.
+
+```
+$ awk -F: '$3 > 999 {print $1}' /etc/passwd | sort
+adebuf
+fbanester
+fteyssier
+jmortreux
+kikinovak
+```
+
+
+
+
+
+
+
+
 
 
 

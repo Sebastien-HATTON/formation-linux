@@ -41,10 +41,10 @@ Les bases de Linux
 * [Gérer les utilisateurs](https://github.com/kikinovak/formation-linux/blob/master/cours/Console-13-Utilisateurs.md)
 
 
+Serveur de réseau local
+-----------------------
 
-
-
-*Travail en cours...*
+* [Installer un serveur de réseau local CentOS 7](https://github.com/kikinovak/formation-linux/blob/master/cours/Install-Serveur-LAN-CentOS-7.md)
 
 
 Serveur dédié

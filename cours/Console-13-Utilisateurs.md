@@ -479,7 +479,7 @@ fteyssier
 ```
 
 L'option `-F` indique à `awk` que le fichier `/etc/passwd` utilise les
-deux-points comme séparateur, et `'{print $1}' signifie "affiche la première
+deux-points comme séparateur, et `'{print $1}'` signifie "affiche la première
 colonne".
 
 Les UID des utilisateurs figurent dans la troisième colonne. Je peux donc les

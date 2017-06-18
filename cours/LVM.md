@@ -152,7 +152,7 @@ d’hôte. On va remplacer ce VG par défaut par un VG personnalisé `vg0`.
 
   1. Cliquer sur le bouton **+** pour créer un autre point de montage.
 
-  2. Créer le point de montage *swap* en spécifiant sa capacité en GiB.
+  2. Créer le point de montage `swap` en spécifiant sa capacité en GiB.
 
   3. Garder le *Type de périphérique LVM*.
 

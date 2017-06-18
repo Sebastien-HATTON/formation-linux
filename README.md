@@ -53,6 +53,9 @@ Serveur de réseau local
 
 * [Synchroniser un réseau local avec NTP](https://github.com/kikinovak/formation-linux/blob/master/cours/NTP-LAN.md)
 
+* [Serveur de bases de donnée MySQL](https://github.com/kikinovak/formation-linux/blob/master/cours/MySQL.md)
+
+
 
 
 
@@ -60,6 +63,8 @@ Serveur dédié
 -------------
 
 * [Installer un serveur dédié CentOS 7 chez Online](https://github.com/kikinovak/formation-linux/blob/master/cours/Install-Dedibox-CentOS-7.md)
+
+* [Serveur de bases de donnée MySQL](https://github.com/kikinovak/formation-linux/blob/master/cours/MySQL.md)
 
 * [Serveur mail avec Postfix](https://github.com/kikinovak/formation-linux/blob/master/cours/Postfix.md)
 

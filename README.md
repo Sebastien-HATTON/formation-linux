@@ -51,6 +51,8 @@ Serveur de réseau local
 
 * [Dépôt de paquets Yum local](https://github.com/kikinovak/formation-linux/blob/master/cours/Yum-Depot-Local.md)
 
+* [Gérer le DNS et le DHCP avec Dnsmasq](https://github.com/kikinovak/formation-linux/blob/master/cours/Dnsmasq.md)
+
 * [Synchroniser un réseau local avec NTP](https://github.com/kikinovak/formation-linux/blob/master/cours/NTP-LAN.md)
 
 * [Serveur de bases de données MySQL](https://github.com/kikinovak/formation-linux/blob/master/cours/MySQL.md)

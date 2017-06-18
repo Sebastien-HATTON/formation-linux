@@ -51,6 +51,9 @@ Serveur de réseau local
 
 * [Dépôt de paquets Yum local](https://github.com/kikinovak/formation-linux/blob/master/cours/Yum-Depot-Local.md)
 
+* [Synchroniser un réseau local avec NTP](https://github.com/kikinovak/formation-linux/blob/master/cours/NTP-LAN.md)
+
+
 
 
 Serveur dédié

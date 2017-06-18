@@ -46,6 +46,9 @@ Serveur de réseau local
 
 * [Installer un serveur de réseau local CentOS 7](https://github.com/kikinovak/formation-linux/blob/master/cours/Install-Serveur-LAN-CentOS-7.md)
 
+* [Dépôt de paquets Yum local](https://github.com/kikinovak/formation-linux/blob/master/cours/Yum-Depot-Local.md)
+
+
 
 Serveur dédié
 -------------

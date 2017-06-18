@@ -1,5 +1,5 @@
-Mettre en place un dépôt de paquets Yum local
-=============================================
+Dépôt de paquets Yum local
+==========================
 
 Document écrit par Nicolas Kovacs <info@microlinux.fr>
 
@@ -25,31 +25,31 @@ d'erreur à répétition du gestionnaire de paquets. Éditer
 `[updates]` et `[extras]`. Le dépôt `[centosplus]` est déjà désactivé dans la
 configuration par défaut.
 
-```bash
+<pre>
 [base]
 name=CentOS-$releasever - Base
-enabled=0
+enabled=<strong>0</strong>
 ...
 [updates]
 name=CentOS-$releasever - Updates
-enabled=0
+enabled=<strong>0</strong>
 ...
 [extras]
 name=CentOS-$releasever - Extras
-enabled=0
+enabled=<strong>0</strong>
 ...
 [centosplus]
 name=CentOS-$releasever - Plus
-enabled=0
-```
+enabled=<strong>0</strong>
+</pre>
 
 Voilà ce que ça donne.
 
-```bash
-# yum check-update
+<pre>
+# <strong>yum check-update</strong> 
 Modules complémentaires chargés : fastestmirror
 Aucun dépôt n'est activé.
-```
+</pre>
 
 
 Récupérer les fichiers ISO
@@ -91,18 +91,18 @@ Monter l'ISO
 
 Créer un point de montage approprié.
 
-```bash
-# mkdir -v /mnt/iso
+<pre>
+# <strong>mkdir -v /mnt/iso</strong> 
 mkdir: création du répertoire « /mnt/iso »
-```
+</pre>
 
 Monter l'ISO avec les options qui vont bien.
 
-```bash
-# mount -o loop CentOS-7.0-1406-x86_64-Everything.iso /mnt/iso/
+<pre>
+# <strong>mount -o loop CentOS-7.0-1406-x86_64-Everything.iso /mnt/iso/</strong> 
 mount: /dev/loop0 est protégé en écriture, 
        sera monté en lecture seule
-```
+</pre>
 
 
 Configurer le dépôt local
@@ -110,24 +110,24 @@ Configurer le dépôt local
 
 Créer un fichier `/etc/yum.repos.d/local.repo` et l'éditer comme ceci.
 
-```bash
+<pre>
 [LocalRepo]
 name=Local Repository
 baseurl=file:///mnt/iso
 enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-```
+</pre>
 
 Nettoyer le cache.
 
-```bash
-# yum clean all
+<pre>
+# <strong>yum clean all</strong> 
 Modules complémentaires chargés : fastestmirror
 Nettoyage des dépôts : LocalRepo
 Cleaning up everything
 Cleaning up list of fastest mirrors
-```
+</pre>
 
 À partir de là, Yum peut être utilisé normalement comme avec les dépôts en ligne.
 
@@ -137,46 +137,46 @@ Mise à jour
 
 Démonter l'ancien ISO.
 
-```bash
-# umount /mnt/iso/
-```
+<pre>
+# <strong>umount /mnt/iso/</strong> 
+</pre>
 
 Monter le nouvel ISO.
 
-```bash
-# mount -o loop CentOS-7-x86_64-Everything-1503-01.iso /mnt/iso/
+<pre>
+# <strong>mount -o loop CentOS-7-x86_64-Everything-1503-01.iso /mnt/iso/</strong> 
 mount: /dev/loop0 est protégé en écriture, 
        sera monté en lecture seule
-```
+</pre>
 
 Vider le cache.
 
-```bash
-# yum clean all
+<pre>
+# <strong>yum clean all</strong> 
 Loaded plugins: fastestmirror
 Cleaning repos: LocalRepo
 Cleaning up everything
 Cleaning up list of fastest mirrors
-```
+</pre>
 
 Afficher les mises à jour.
 
-```bash
-# yum check-update
-```
+<pre>
+# <strong>yum check-update</strong> 
+</pre>
 
 Une bonne pratique consiste à s'assurer qu'on dispose bien de tous les paquets
 de l'installation minimale, étant donné qu'il peut y avoir quelques menus
 changements entre les différentes versions.
 
-```bash
-# yum group install "Minimal Install"
-```
+<pre>
+# <strong>yum group install "Minimal Install"</strong> 
+</pre>
 
 Il ne reste plus qu'à lancer la mise à jour.
 
-```bash
-# yum update
-```
+<pre>
+# <strong>yum update</strong> 
+</pre>
 
 

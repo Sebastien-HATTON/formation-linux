@@ -3,7 +3,7 @@ Organiser les hôtes virtuels Apache
 
 Document écrit par Nicolas Kovacs <info@microlinux.fr>
 
-<img align="right" src="../images/apache-vhosts.png">
+<img align="right" src="../images/apache-vhosts.jpg">
 
 Comme la plupart des distributions Linux, Red Hat et CentOS fournissent un
 répertoire comprenant une série de fichiers de configuration modulaires pour

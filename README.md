@@ -48,7 +48,6 @@ Serveur de réseau local
 
 * [Partitionnement avec LVM](https://github.com/kikinovak/formation-linux/blob/master/cours/LVM.md)
 
-
 * [Dépôt de paquets Yum local](https://github.com/kikinovak/formation-linux/blob/master/cours/Yum-Depot-Local.md)
 
 * [Gérer le DNS et le DHCP avec Dnsmasq](https://github.com/kikinovak/formation-linux/blob/master/cours/Dnsmasq.md)
@@ -59,6 +58,8 @@ Serveur de réseau local
 
 * [Serveur web Apache](https://github.com/kikinovak/formation-linux/blob/master/cours/Apache.md)
 
+* [Organiser les hôtes virtuels Apache](https://github.com/kikinovak/formation-linux/blob/master/cours/Apache-Vhosts.md)
+
 
 Serveur dédié
 -------------
@@ -68,6 +69,8 @@ Serveur dédié
 * [Serveur de bases de données MySQL](https://github.com/kikinovak/formation-linux/blob/master/cours/MySQL.md)
 
 * [Serveur web Apache](https://github.com/kikinovak/formation-linux/blob/master/cours/Apache.md)
+
+* [Organiser les hôtes virtuels Apache](https://github.com/kikinovak/formation-linux/blob/master/cours/Apache-Vhosts.md)
 
 * [Serveur mail avec Postfix](https://github.com/kikinovak/formation-linux/blob/master/cours/Postfix.md)
 

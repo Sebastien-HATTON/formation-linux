@@ -3,8 +3,8 @@ Formation Administration Linux
 
 Nicolas Kovacs (info@microlinux.fr)
 
-Les bases de Linux
-------------------
+Bases de Linux
+--------------
 
 * [Introduction à Linux](https://github.com/kikinovak/formation-linux/blob/master/cours/Linux.md)
 

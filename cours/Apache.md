@@ -206,8 +206,8 @@ nécessaire.
 apprécier le résultat.
 
 
-Apache et SELinux (1)
----------------------
+Apache et SELinux
+-----------------
 
 Jetons un premier coup d’oeil sur ce que pense SELinux de notre configuration.
 

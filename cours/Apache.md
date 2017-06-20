@@ -295,7 +295,7 @@ Créer un fichier `/etc/httpd/conf.d/default.conf`. Ce fichier définira le site
 affiché par défaut, c’est-à-dire lorsqu’on invoque l’adresse IP ou le nom
 d’hôte de la machine.
 
-<pre>
+```
 # /etc/httpd/conf.d/default.conf
 #
 # Page par défaut
@@ -307,7 +307,7 @@ d’hôte de la machine.
   ErrorLog logs/default-error_log
   CustomLog logs/default-access_log common
 </VirtualHost>
-</pre>
+```
 
 Une remarque en passant. Nous aurions pu très bien ajouter cette stance dans le
 fichier `/etc/httpd/conf/httpd.conf`. La création de fichiers `*.conf`

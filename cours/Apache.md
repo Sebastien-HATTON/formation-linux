@@ -295,19 +295,19 @@ Créer un fichier `/etc/httpd/conf.d/default.conf`. Ce fichier définira le site
 affiché par défaut, c’est-à-dire lorsqu’on invoque l’adresse IP ou le nom
 d’hôte de la machine.
 
-```
+<pre>
 # /etc/httpd/conf.d/default.conf
 #
 # Page par défaut
-<VirtualHost *:80>
+&lt;VirtualHost *:80&gt;
   ServerAdmin info@microlinux.fr
   DocumentRoot "/var/www/html/default/html"
   ServerName amandine.microlinux.lan
   ServerAlias amandine
   ErrorLog logs/default-error_log
   CustomLog logs/default-access_log common
-</VirtualHost>
-```
+&lt;VirtualHost&gt;
+</pre>
 
 Une remarque en passant. Nous aurions pu très bien ajouter cette stance dans le
 fichier `/etc/httpd/conf/httpd.conf`. La création de fichiers `*.conf`
@@ -333,14 +333,14 @@ Vérifier si la page par défaut du serveur s’affiche comme prévu.
 # /etc/httpd/conf.d/slackware.conf
 #
 # La documentation de Slackware
-<VirtualHost *:80>
+&lt;VirtualHost *:80&gt;
   ServerAdmin info@microlinux.fr
   DocumentRoot "/var/www/html/slackware/html"
   ServerName slackware.amandine.microlinux.lan
   ServerAlias slackware.amandine
   ErrorLog logs/slackware-error_log
   CustomLog logs/slackware-access_log common
-</VirtualHost>
+&lt;VirtualHost&gt;
 </pre>
 
 La configuration de `http://freebsd.amandine` suivra la même logique.
@@ -349,14 +349,14 @@ La configuration de `http://freebsd.amandine` suivra la même logique.
 # /etc/httpd/conf.d/freebsd.conf
 #
 # La documentation de FreeBSD
-<VirtualHost *:80>
+&lt;VirtualHost *:80&gt;
   ServerAdmin info@microlinux.fr
   DocumentRoot "/var/www/html/freebsd/html"
   ServerName freebsd.amandine.microlinux.lan
   ServerAlias freebsd.amandine
   ErrorLog logs/freebsd-error_log
   CustomLog logs/freebsd-access_log common
-</VirtualHost>
+&lt;VirtualHost&gt;
 </pre>
 
 Pour l’instant, les noms d’hôtes `slackware.amandine` et `freebsd.amandine` ne
@@ -382,7 +382,8 @@ Prendre en compte la nouvelle configuration d’Apache.
 # <strong>systemctl reload httpd</strong> 
 </pre>
 
-Tester les deux sites en local avec Links ou Firefox sur une machine du réseau local.
+Tester les deux sites en local avec Links ou Firefox sur une machine du réseau
+local.
 
   * `http://slackware.amandine.microlinux.lan`
 
@@ -408,7 +409,7 @@ Or, le code source de la page d’accueil de FreeBSD spécifie un encodage
 différent.
 
 <pre>
-<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+&lt;xml version="1.0" encoding="iso-8859-1" standalone="no"?&gt;
 </pre>
 
 Pour remédier à cela, il suffit de commenter la directive `AddDefaultCharset`,
@@ -440,13 +441,13 @@ configuration de la page par défaut ressemblera à ceci.
 # /etc/httpd/conf.d/default.conf
 #
 # Page par défaut
-<VirtualHost *:80>
+&lt;VirtualHost *:80&gt;
   ServerAdmin info@microlinux.fr
   DocumentRoot "/var/www/html/default/html"
   ServerName sd-41893.dedibox.fr
   ErrorLog logs/default-error_log
   CustomLog logs/default-access_log common
-</VirtualHost>
+&lt;VirtualHost&gt;
 </pre>
 
 La documentation de Slackware sera hébergée sur l’hôte `slackware.slackbox.fr`.
@@ -455,13 +456,13 @@ La documentation de Slackware sera hébergée sur l’hôte `slackware.slackbox.
 # /etc/httpd/conf.d/slackware.conf
 #
 # La documentation de Slackware
-<VirtualHost *:80>
+&lt;VirtualHost *:80&gt;
   ServerAdmin info@microlinux.fr
   DocumentRoot "/var/www/html/slackware/html"
   ServerName slackware.slackbox.fr
   ErrorLog logs/slackware-error_log
   CustomLog logs/slackware-access_log common
-</VirtualHost>
+&lt;VirtualHost&gt;
 </pre>
 
 Et pour l’hébergement de la documentation de FreeBSD, on suivra la même
@@ -471,13 +472,13 @@ logique.
 # /etc/httpd/conf.d/freebsd.conf
 #
 # La documentation de FreeBSD
-<VirtualHost *:80>
+&lt;VirtualHost *:80&gt;
   ServerAdmin info@microlinux.fr
   DocumentRoot "/var/www/html/freebsd/html"
   ServerName freebsd.slackbox.fr
   ErrorLog logs/freebsd-error_log
   CustomLog logs/freebsd-access_log common
-</VirtualHost>
+&lt;VirtualHost&gt;
 </pre>
 
 Cette fois-ci, l’information sur les hôtes `slackware.slackbox.fr` et

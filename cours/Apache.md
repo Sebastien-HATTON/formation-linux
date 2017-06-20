@@ -306,7 +306,7 @@ d’hôte de la machine.
   ServerAlias amandine
   ErrorLog logs/default-error_log
   CustomLog logs/default-access_log common
-&lt;VirtualHost&gt;
+&lt;/VirtualHost&gt;
 </pre>
 
 Une remarque en passant. Nous aurions pu très bien ajouter cette stance dans le
@@ -340,7 +340,7 @@ Vérifier si la page par défaut du serveur s’affiche comme prévu.
   ServerAlias slackware.amandine
   ErrorLog logs/slackware-error_log
   CustomLog logs/slackware-access_log common
-&lt;VirtualHost&gt;
+&lt;/VirtualHost&gt;
 </pre>
 
 La configuration de `http://freebsd.amandine` suivra la même logique.
@@ -356,7 +356,7 @@ La configuration de `http://freebsd.amandine` suivra la même logique.
   ServerAlias freebsd.amandine
   ErrorLog logs/freebsd-error_log
   CustomLog logs/freebsd-access_log common
-&lt;VirtualHost&gt;
+&lt;/VirtualHost&gt;
 </pre>
 
 Pour l’instant, les noms d’hôtes `slackware.amandine` et `freebsd.amandine` ne
@@ -447,7 +447,7 @@ configuration de la page par défaut ressemblera à ceci.
   ServerName sd-41893.dedibox.fr
   ErrorLog logs/default-error_log
   CustomLog logs/default-access_log common
-&lt;VirtualHost&gt;
+&lt;/VirtualHost&gt;
 </pre>
 
 La documentation de Slackware sera hébergée sur l’hôte `slackware.slackbox.fr`.
@@ -462,7 +462,7 @@ La documentation de Slackware sera hébergée sur l’hôte `slackware.slackbox.
   ServerName slackware.slackbox.fr
   ErrorLog logs/slackware-error_log
   CustomLog logs/slackware-access_log common
-&lt;VirtualHost&gt;
+&lt;/VirtualHost&gt;
 </pre>
 
 Et pour l’hébergement de la documentation de FreeBSD, on suivra la même
@@ -478,7 +478,7 @@ logique.
   ServerName freebsd.slackbox.fr
   ErrorLog logs/freebsd-error_log
   CustomLog logs/freebsd-access_log common
-&lt;VirtualHost&gt;
+&lt;/VirtualHost&gt;
 </pre>
 
 Cette fois-ci, l’information sur les hôtes `slackware.slackbox.fr` et

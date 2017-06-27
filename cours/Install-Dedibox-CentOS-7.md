@@ -409,7 +409,7 @@ SELINUXTYPE=targeted
 ```
 
 Créer un fichier `/.autorelabel` pour lancer le réétiquetage du système au
-prochain démarrage.
+prochain démarrage. Le cas échéant, vérifier s'il existe déjà. 
 
 ```
 # touch /.autorelabel

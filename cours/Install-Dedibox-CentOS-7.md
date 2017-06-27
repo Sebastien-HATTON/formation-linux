@@ -37,11 +37,11 @@ Online propose un schéma de partitionnement par défaut, que nous allons modifi
 
   1. Réduire la taille de la partition principale pour avoir un peu de marge.
 
-  2. Augmenter la taille de la partition d’échange : 8192 Mo.
+  2. Augmenter la taille de la partition `/boot` : 500 Mo.
 
-  3. La taille de la partition `/boot` est convenable : 200 Mo.
+  3. La partition `/boot` sera formatée en `ext2`.
 
-  4. La partition `/boot` sera formatée en `ext2`.
+  4. Augmenter la taille de la partition d’échange : 4096 Mo.
 
   5. Remplir l’espace disponible pour la partition principale.
 

@@ -194,8 +194,6 @@ supplémentaire, et dont on peut aisément se passer.
 # yum remove NetworkManager*
 # systemctl stop postfix
 # yum remove postfix
-# systemctl stop chronyd
-# yum remove chrony
 ```
 
 Pour la synchronisation, on préférera NTP à Chrony. Quant à Postfix, il sera

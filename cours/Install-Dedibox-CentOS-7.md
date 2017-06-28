@@ -196,8 +196,7 @@ supplémentaire, et dont on peut aisément se passer.
 # yum remove postfix
 ```
 
-Pour la synchronisation, on préférera NTP à Chrony. Quant à Postfix, il sera
-installé plus loin en cas de besoin.
+Postfix sera installé plus loin en cas de besoin.
 
 
 Peaufiner la configuration réseau

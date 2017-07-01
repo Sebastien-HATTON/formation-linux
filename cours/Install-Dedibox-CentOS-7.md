@@ -541,6 +541,6 @@ found 0 alerts in /var/log/audit/audit.log
 Tout est en ordre, et je peux dorénavant passer en mode `Strict`.
 
 <pre>
-# setenforce 1
+# <strong>setenforce 1</strong> 
 </pre>
 

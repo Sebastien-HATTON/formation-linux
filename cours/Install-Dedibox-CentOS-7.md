@@ -337,7 +337,7 @@ Installer le plug-in `yum-plugin-priorities`.
 Vérifier s'il fonctionne correctement.
 
 <pre>
-# yum check-update
+# <strong>yum check-update</strong> 
 Loaded plugins: fastestmirror, priorities
 Loading mirror speeds from cached hostfile
  * base: mirror.plusserver.com

@@ -1,5 +1,5 @@
-Configurer un serveur DNS avec BIND
-===================================
+Serveur DNS avec BIND
+=====================
 
 <img align="right" src="../images/dns.png">
 

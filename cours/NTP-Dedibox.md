@@ -157,6 +157,7 @@ Rebasculer en mode strict.
 # <strong>setenforce 1</strong> 
 </pre>
 
+
 ----------
 
 Document écrit par Nicolas Kovacs &lt;info@microlinux.fr&gt;

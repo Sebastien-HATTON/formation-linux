@@ -68,6 +68,8 @@ Serveur dédié
 
 * [Synchroniser un serveur dédié avec NTP](https://github.com/kikinovak/formation-linux/blob/master/cours/NTP-Dedibox.md)
 
+* [Serveur DNS avec BIND](https://github.com/kikinovak/formation-linux/blob/master/cours/BIND.md)
+
 * [Serveur de bases de données MySQL](https://github.com/kikinovak/formation-linux/blob/master/cours/MySQL.md)
 
 * [Serveur web Apache](https://github.com/kikinovak/formation-linux/blob/master/cours/Apache.md)

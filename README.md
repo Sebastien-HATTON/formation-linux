@@ -66,6 +66,8 @@ Serveur dédié
 
 * [Installer un serveur dédié CentOS 7 chez Online](https://github.com/kikinovak/formation-linux/blob/master/cours/Install-Dedibox-CentOS-7.md)
 
+* [Synchroniser un serveur dédié avec NTP](https://github.com/kikinovak/formation-linux/blob/master/cours/NTP-Dedibox.md)
+
 * [Serveur de bases de données MySQL](https://github.com/kikinovak/formation-linux/blob/master/cours/MySQL.md)
 
 * [Serveur web Apache](https://github.com/kikinovak/formation-linux/blob/master/cours/Apache.md)

@@ -159,6 +159,6 @@ Rebasculer en mode strict.
 
 ----------
 
-<small>Document écrit par Nicolas Kovacs &lt;info@microlinux.fr&gt;</small>
+Document écrit par Nicolas Kovacs &lt;info@microlinux.fr&gt;
 
 

@@ -1,8 +1,6 @@
 Installer un serveur dédié CentOS 7 chez Online
 ===============================================
 
-Document écrit par Nicolas Kovacs <info@microlinux.fr>
-
 Cette page décrit l'installation et la configuration de CentOS 7 sur un serveur
 dédié Dedibox de chez [Online](https://www.online.net/fr). Un serveur dédié,
 c'est une machine généralement située dans la salle blanche d'un datacenter. Si
@@ -543,4 +541,8 @@ Tout est en ordre, et je peux dorénavant passer en mode `Strict`.
 <pre>
 # <strong>setenforce 1</strong> 
 </pre>
+
+----------
+
+Document écrit par Nicolas Kovacs &lt;info@microlinux.fr&gt;
 

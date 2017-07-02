@@ -433,6 +433,8 @@ la [console Online](https://console.online.net) > *Liste de vos serveurs* >
 souhaité. Pour la prise en compte des modifications, il faudra patienter un
 peu.
 
+  ![Reverse DNS](../images/reverse-dns-online.png)
+
 
 BIND et SELinux (2)
 -------------------
